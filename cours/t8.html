@@ -1,0 +1,1631 @@
+	<section>
+		<h1>Développement PHP</h1>
+		<p>ISEN - CIR - 2012/2013</p>
+		<p style="margin-top: 60px; font-size: 36px;"><strong>Sylvain Jaune</strong></p>
+		<p>sjaune@perates.fr</p>
+		<p>www.perates.fr</p>
+	</section>
+
+	<section>
+		<h2>Sommaire</h2>
+		<ol>
+			<li><strong>Introduction</strong></li>
+			<li><strong>La POO en PHP</strong></li>
+			<li><strong>Le modèle MVC</strong></li>
+			<li><strong>Les Frameworks</strong></li>
+			<li><strong>Bonnes pratiques</strong></li>
+		</ol>
+	</section>
+
+	<section>
+
+		<section>
+			<h2>Introduction</h2>
+		</section>
+
+		<section>
+			<h3>Introduction</h3>
+			<ul>
+				<li>PHP est un <strong>langage de script côté serveur</strong></li>
+				<li>C'est un descendant du C proche du Perl et du Java</li>
+				<li>Il permet de créer des contenus dynamiquement (pages HTML, images, PDF, ...)</li>
+				<li>Généralement lié à une connexion de données (SGBD, API, ...)</li>
+				<li>Permet la création de scripts simples ou d'application professionnelles complexes (Facebook !)</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Introduction</h3>
+			<p class="subtitle">Historique des versions de PHP</p>
+			<table>
+				<tbody>
+				<tr>
+					<th>Version</th>
+					<th>Année</th>
+				</tr>
+				<tr>
+					<td>1.0</td>
+					<td>1995</td>
+				</tr>
+				<tr>
+					<td>2.0</td>
+					<td>1997</td>
+				</tr>
+				<tr>
+					<td>3.0</td>
+					<td>1998</td>
+				</tr>
+				<tr>
+					<td>4.0.0 à 4.4.9</td>
+					<td>2000 à 2008</td>
+				</tr>
+				<tr>
+					<td><strong>5.0.0</strong> à 5.1.0</td>
+					<td>2004 à 2006</td>
+				</tr>
+				<tr>
+					<td>5.2.16</td>
+					<td>2010</td>
+				</tr>
+				<tr class="red">
+					<td>5.3 à 5.3.18 (actuelle)</td>
+					<td>2009 à 2012</td>
+				</tr>
+				<tr class="red">
+					<td>5.4 à 5.4.8 (actuelle)</td>
+					<td>2012</td>
+				</tr>
+				<tr>
+					<td>6.0</td>
+					<td>Abandonnée</td>
+				</tr>
+
+			</tbody></table>
+		</section>
+	</section>
+
+	</section>
+
+	<section>
+
+		<section>
+			<h2>La POO en PHP</h2>
+			<img src="images/t8/1_itemPreview.png" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>La POO en PHP</h3>
+			<ul>
+				<li>Apparue depuis la version 3 de PHP</li>
+				<li>Ce n'est que depuis <strong>PHP5</strong> que de véritables <strong>concepts objet</strong> sont apparus</li>
+				<li>La syntaxe est dorénavant très proche des langages matures (C++, Java)</li>
+				<li>Cela à permis de <strong>professionnaliser le développement</strong> en PHP </li>
+				<li>Et de créer des <strong>architectures plus robustes</strong> et maintenables</li>
+				<li>On note aussi une nette <strong>amélioration des performances</strong> par rapport au procédural</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Concepts objet</h3>
+			<ul>
+				<li>Une <strong>classe</strong> est la représentation abstraite d'un <strong>objet</strong> (une personne, une table, un livre, ...)</li>
+				<li>Une classe décrit les <strong>propriétés</strong> (ou <strong>attributs</strong>) de l'objet et les fonctions (<strong>méthodes</strong>) dont il est capable</li>
+				<li>Un <strong>objet</strong> (en POO) est une <strong>instance de classe</strong></li>
+				<li>L'<strong>héritage</strong> définit une <strong>hiérarchie de classes</strong></li>
+				<li>L'<strong>héritage</strong> permet de redéfinir les propriétés et méthodes d'une classe tout en héritant de celles du <strong>parent</strong></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Syntaxe</h3>
+			<ul>
+				<li>Une classe s'écrit au moyen du mot-clé "<strong>class</strong>" suivi du nom de la classe</li>
+				<li>Utilisez au maximum les <strong>conventions de nommage</strong></li>
+				<li><strong>Pascal Case</strong> (Upper Camel Case) pour les <strong>classes</strong>, <strong>interfaces</strong> (ex: NomDeMaClasse)</li>
+				<li><strong>Camel Case</strong> (Lower Camel Case) pour les <strong>fonctions</strong>, <strong>méthodes</strong> et <strong>variables</strong> (ex: nomDeMaMethode)</li>
+				<li><strong>Majuscules</strong> pour les <strong>constantes</strong> (ex: MA_CONSTANTE)</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Syntaxe</h3>
+<pre class="no-break"><code>&lt;?php
+
+// Déclaration de la classe
+class Personne {
+
+    const NB_JAMBES = 2;
+
+    // Propriétes
+    public $nom;
+    public $prenom;
+    public $numeroDeSecu;
+    public $age;
+
+    // Méthode
+    public function afficherNom()
+    {
+        echo $this-&gt;nom . &quot; &quot; . $this-&gt;prenom;
+    }
+}
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Syntaxe</h3>
+			<p>La création d'une <strong>instance de classe</strong> se fait au moyen du mot-clé "<strong>new</strong>"</p>
+<pre class="fragment no-break"><code>&lt;?php
+// Création d'une instance de classe
+$maPersonne = new Personne();
+
+// Définition des propriétés
+$maPersonne->prenom = 'Pierre';
+$maPersonne->nom = 'Durand';
+$maPersonne->age = 50;
+
+$maPersonne->afficherNom(); // Affiche "Pierre Durand"
+
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Méthodes statiques</h3>
+			<ul>
+				<li>Une classe peut aussi contenir des <strong>fonctions statiques</strong></li>
+				<li>Cela permet d'y accéder <strong>sans avoir besoin de l'instancier</strong></li>
+				<li>On utilise alors le mot-clé <strong>"static"</strong> devant le nom de la méthode</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Méthodes statiques</h3>
+<pre class="no-break"><code>&lt;?php
+class Personne {
+
+    // Propriétes
+    ...
+
+    // Méthode
+    public function afficherNom()
+    {
+        ...
+    }
+
+    // Méthode statique
+    public static function direBonjour()
+    {
+        echo "Bonjour";
+    }
+}
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Méthodes statiques</h3>
+			<ul>
+				<li>Et l'opérateur "<strong>::</strong>" après le nom de la classe</li>
+			</ul>
+<pre class="fragment no-break"><code>&lt;?php
+
+Personne::direBonjour(); // Affiche "Bonjour"
+
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Constantes de classe</h3>
+			<ul>
+				<li>Il est aussi possible de définir des <strong>constantes</strong> à l'intérieur d'une classe, qui ne seront <strong>pas modifiables</strong></li>
+				<li>Le symbole <strong>dollar ($) n'est pas utilisé</strong> dans ce cas de figure</li>
+				<li>On utilise l'opérateur "<strong>::</strong>" comme pour les fonctions statiques</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Constantes de classe</h3>
+<pre class="no-break"><code>&lt;?php
+class MaClasse
+{
+    const MA_CONSTANTE = 'valeur';
+
+    function afficherLaConstante() {
+        echo self::MA_CONSTANTE;
+    }
+}
+
+echo MaClasse::MA_CONSTANTE;
+
+$monObj = new MaClasse();
+$monObj-&gt;afficherLaConstante();
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Héritage</h3>
+			<ul>
+				<li>L'héritage est un des <strong>grands principes de la POO</strong></li>
+				<li>L'héritage permet d'<strong>ajouter ou de redéfinir des fonctionnalités d'une classe</strong></li>
+				<li>Cela <strong>évite de réimplémenter toutes les méthodes</strong> d'une classe</li>
+				<li>La <strong>classe fille héritera des méthodes publiques et protégées</strong> de la classe parente</li>
+				<li>Tant qu'une classe fille n'écrase pas ces méthodes elles seront apellées de la classe parent</li>
+				<li>L'héritage d'une classe se fait à l'aide du mot-clé "<strong>extends</strong>"</li>
+			</ul>
+
+		</section>
+
+		<section>
+			<h3>Héritage</h3>
+<pre class="no-break"><code>&lt;?php
+class Personne {
+
+    public $nom;
+    public $prenom;
+    public $age;
+
+    public function getNom()
+    {
+        return $this-&gt;nom . &quot; &quot; . $this-&gt;prenom;
+    }
+
+    public function getAge()
+    {
+        return $this-&gt;age;
+    }
+}
+
+class Etudiant extends Personne  {
+
+    public $cursus;
+    public $annee;
+
+    public function getClasse()
+    {
+        return $this->cursus . $this-&gt;annee;
+    }
+}
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Héritage</h3>
+<pre class="php no-break"><code>&lt;?php
+$etudiant = new Etudiant();
+
+$etudiant->prenom = 'Paul';
+$etudiant->nom = 'Martin';
+$etudiant->age = 22;
+$etudiant->cursus = 'CIR';
+$etudiant->annee = 2;
+
+echo sprintf("Bonjour je m'appelle %s, j'ai %d ans et je suis en %s",
+    $etudiant->getNom(),
+    $etudiant->getAge(),
+    $etudiant->getClasse()
+);
+
+// Affiche :
+// Bonjour je m'appelle Paul Martin, j'ai 22 ans et je suis en CIR2
+
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Héritage</h3>
+<pre class="php no-break"><code>&lt;?php
+class Chien {
+
+    public function aboyer()
+    {
+        echo "wouf wouf";
+    }
+}
+
+class PetitChien extends Chien {
+
+    public function aboyer()
+    {
+        echo "wif wif wif";
+    }
+}
+
+class BergerAllemand extends Chien {}
+class Caniche extends PetitChien {}
+
+$bergerAllemand = new BergerAllemand();
+$bergerAllemand->aboyer(); // Affiche "wouf wouf"
+
+$caniche = new Caniche();
+$caniche->aboyer(); // Affiche "wif wif wif"
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Visibilité</h3>
+<ul>
+	<li>Les classes peuvent avoir des propriétés ou méthodes avec différents <strong>niveaux de visibilité</strong></li>
+	<li>Visibilité = à quel <strong>niveau du code</strong> on peut avoir accès à la méthode ou à la propriété</li>
+	<li>Il existe trois niveaux de visibilité : <strong>publiques</strong> (public), <strong>protégées</strong> (protected), ou <strong>privées</strong> (private)</li>
+</ul>
+		</section>
+
+		<section>
+			<h3>Visibilité</h3>
+<pre class="php no-break"><code>&lt;?php
+class MaClasse
+{
+    public $public = 'Publique';
+    protected $protected = 'Prot&eacute;g&eacute;e';
+    private $private = 'Priv&eacute;e';
+
+    function afficherLesVariables()
+    {
+        echo $this-&gt;public;
+        echo $this-&gt;protected;
+        echo $this-&gt;private;
+    }
+}
+
+$obj = new MaClasse();
+echo $obj-&gt;public; // Fonctionne
+echo $obj-&gt;protected; // Erreur fatale
+echo $obj-&gt;private; // Erreur fatale
+
+// Affiche Publique, Prot&eacute;g&eacute;e et Priv&eacute;e
+$obj-&gt;afficherLesVariables();
+?&gt;</code></pre>
+
+		</section>
+
+		<section>
+			<h3>Méthodes publiques (public)</h3>
+			<ul>
+				<li>Les propriétés ou méthodes publiques d'un objet seront <strong>accessibles depuis n'importe où</strong> dans le programme principal ou bien dans les classes dérivées</li>
+				<li>Les propriétés ou méthodes non spécifiées par le mot-clé public sont <strong>définies automatiquement comme publiques</strong></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Méthodes publiques (public)</h3>
+<pre class="no-break"><code>&lt;?php
+
+// Les trois propriétés sont considérées comme publiques
+class MaClasse {
+
+    $propriete1 = 'valeur1'; 		// Syntaxe sans le mot-clé public
+    public $propriete2 = 'valeur2'; 	// Syntaxe avec le mot-clé
+    var $propriete3 = 'valeur3'; 	// Syntaxe PHP4
+}
+
+$monObj = new MaClasse();
+
+echo $monObj->propriete1; // Affiche "valeur 1"
+echo $monObj->propriete2; // Affiche "valeur 2"
+echo $monObj->propriete3; // Affiche "valeur 3"
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Méthodes protégées (protected)</h3>
+			<ul>
+				<li>Les propriétés ou méthodes protégées sont <strong>accessibles par les instances de la classe ainsi que ses dérivées</strong></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Méthodes protégées (protected)</h3>
+<pre class="no-break"><code>&lt;?php
+class MaClasse
+{
+    protected $protected = 'Prot&eacute;g&eacute;e';
+
+    function afficher()
+    {
+        echo $this-&gt;protected;
+    }
+}
+
+class MaSousClasse extends MaClasse {}
+
+$obj = new MaClasse();
+echo $obj-&gt;protected; // Erreur
+$obj-&gt;afficher(); // Fonctionne
+
+$obj2 = new MaSousClasse();
+echo $obj2-&gt;protected; // Erreur
+$obj2-&gt;afficher(); // Fonctionne
+?&gt;</code></pre>
+
+		</section>
+
+		<section>
+			<h3>Méthodes privées (private)</h3>
+			<ul>
+				<li>Les propriétés ou méthodes privées ne sont <strong>accessibles qu'à l'intérieur de la classe</strong></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Méthodes protégées (protected)</h3>
+<pre class="no-break"><code>&lt;?php
+class MaClasse
+{
+    private $private = 'Privée';
+
+    function afficher()
+    {
+        echo $this->private;
+    }
+}
+
+class MaSousClasse extends MaClasse
+{
+    function afficher()
+    {
+        echo $this->private;
+    }
+}
+
+$obj = new MaClasse();
+$obj->afficher(); // Fonctionne
+
+$obj2 = new MaSousClasse();
+$obj2->afficher(); // Erreur
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Résolution de portée</h3>
+			<ul>
+				<li>A l'intérieur d'une classe on utilise le mot-clé "<strong>parent</strong>" pour résoudre la classe parent</li>
+				<li>Le mot-clé "<strong>self</strong>" pour résoudre la classe actuelle</li>
+				<li>Utile pour s'afranchir du nom des classes dans lesquelles on se situe (actuelles, héritées, dérivées, ...)</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Résolution de portée</h3>
+<pre class="no-break"><code>&lt;?php
+class MaClasseAvecUnNomTresTresLong
+{
+    public static maFonction()
+    {
+        return &quot;Bonjour !&quot;;
+    }
+
+    public static fonctionQuiAfficheCommeLaPremiere()
+    {
+        return self::maFonction();
+    	// Idem que MaClasseAvecUnNomTresTresLong::maFonction();
+    }
+}
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Résolution de portée</h3>
+<pre class="php no-break"><code>&lt;?php
+class MaClasse
+{
+    public static maFonction()
+    {
+        echo &quot;MaClasse&quot;;
+    }
+}
+
+class MaSousClasse extends MaClasse
+{
+    public static maFonction()
+    {
+        echo &quot;MaSousClasse&quot;;
+        echo parent::maFonction();
+    }
+}
+
+MaClasse::maFonction(); // Affiche "MaClasse"
+MaSousClasse::maFonction(); // Affiche "MaClasse", "MaSousClasse"
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Interfaces</h3>
+			<ul>
+				<li>Les interfaces objet vous permettent de définir <strong>quelles méthodes une classe doit implémenter</strong></li>
+				<li>Les interfaces sont définies en utilisant le <strong>mot-clé interface</strong>, comme pour une classe standard</li>
+				<li>Le contenu des méthodes n'est cependant pas spécifié</li>
+				<li>Toutes les méthodes déclarées dans une interface doivent être <strong>publiques</strong></li>
+				<li>On utilise l'opérateur <strong>implements</strong> pour implémenter une interface</li>
+				<li>Ne pas implémenter toutes les méthodes de l'interface provoque une erreur fatale</li>
+			</ul>
+
+		</section>
+
+		<section>
+			<h3>Interfaces</h3>
+<pre class="no-break"><code>&lt;?php
+// Declaration de l'interface 'iDAO'
+interface iDAO
+{
+    public function getData();
+    public function setData($value);
+}
+
+class monDAO implements iDAO
+{
+    public function getData()
+    {
+        ...
+    }
+
+    public function setData($value)
+    {
+        ...
+    }
+}
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Références et clônage</h3>
+			<ul>
+				<li><strong>Copier un objet</strong> vers un autre en PHP5 au moyen de l'opérateur "=" <strong>créé une référence vers celui-ci</strong></li>
+				<li>Une réelle copie d'objet sera créée en utilisant le mot-clé <strong>clone</strong></li>
+				<li>Cette opération fait appel à la fonction interne <strong>__clone()</strong> de l'objet si elle existe</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Références et clônage</h3>
+<pre class="no-break"><code>&lt;?php
+class MaClasse
+{
+    public $propriete = "Z";
+}
+
+$monObjet = new MaClasse();
+$monObjet->propriete = 'A';
+$monObjet2 = $monObjet; // Créé une référence vers l'objet $monObjet
+$monObjet2->propriete = 'B';
+echo $monObjet->propriete; // Affiche "B"
+echo $monObjet2->propriete; // Affiche "B"
+
+$monObjet3 = new MaClasse();
+$monObjet3->propriete = 'C';
+$monObjet4 = clone $monObjet; // Duplique les propriétés de l'objet
+$monObjet4->propriete = 'D';
+
+echo $monObjet3->propriete; // Affiche "C"
+echo $monObjet4->propriete; // Affiche "D"
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Exceptions</h3>
+			<ul>
+				<li>Une exception est un moyen de prévenir une erreur dans le code</li>
+				<li>Une exception peut être lancée ("<strong>throw</strong>") et attrapée ("<strong>catch</strong>")</li>
+				<li>PHP peut gérer les exceptions comme les autres langages de programmation</li>
+				<li>Lorsqu'une exception est lancée, le code suivant le traitement ne sera pas exécuté</li>
+				<li>L'exécution continuera dans le bloc <strong>catch</strong></li>
+				<li>L'objet renvoyé en paramètre est une instance de la classe <strong>Exception</strong></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Exceptions</h3>
+<pre class="php no-break"><code>&lt;?php
+try {
+
+    // Si ce code retourne une Exception
+    // le code du bloc catch sera exécuté
+    $select = $dbConnection-&gt;select();
+
+    // Cette ligne de code renvoie une exception
+    $select-&gt;from('valid_table')
+    -&gt;where('not_valid_column = ?', 'value');
+
+    $dbConnection-&gt;fetchAll($select);
+
+} catch (Exception $e) {
+
+    echo "Une erreur est survenue !";
+
+}
+?&gt;</code></pre>
+
+		</section>
+
+		<section>
+			<h3>Les espaces de noms</h3>
+			<ul>
+				<li>PHP 5.3 introduit le concept d'espaces de noms (<strong>namespaces</strong>)</li>
+				<li>Les noms de classes, fonctions et constantes devant être uniques, on ne pouvait donc pas définir de noms trop génériques</li>
+				<li>Cela permet de ne <strong>pas rentrer en conflit avec d'autres librairies</strong></li>
+				<li>Avant PHP 5.3 il était courant d'<strong>utiliser des préfixes</strong> à la place</li>
+				<li>Les namespaces permettent aussi de faire des alias (raccourcis) de nom de classes extrêmement longs</li>
+				<li>La déclaration se fait en utilisant le mot-clé "<strong>namespace</strong>" en début de fichier</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Les espaces de noms</h3>
+<pre class="php no-break"><code>&lt;?php
+// Fichier librairie_externe.php
+namespace \librarie\externe;
+
+class MaClasse
+{
+    public function __construct()
+    {
+        echo __NAMESPACE__;
+    }
+}
+
+// Fichier ma_librairie.php
+namespace \ma\librarie;
+
+class MaClasse extends \librarie\externe\MaClasse {}
+
+// ...
+
+$classe1 = new \librarie\externe\MaClasse();
+$classe2 = new \ma\librarie\MaClasse();
+?&gt;</code></pre>
+
+		</section>
+
+		<section>
+			<h3>Les espaces de noms</h3>
+<pre class="php no-break"><code>&lt;?php
+
+// Utilisation des alias
+use \librarie\externe as LibExt;
+
+$monObjet = new \LibExt\MaClasse();
+
+?&gt;</code></pre>
+
+		</section>
+
+		<section>
+			<h3>Questions ?</h3>
+		</section>
+
+	</section>
+
+	<section>
+		<section>
+			<h2>Le modèle MVC</h2>
+			<img src="images/t8/zend.controller.basics.png" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<ul>
+				<li>Schéma de conception (<strong>design pattern</strong>) très utilisé</li>
+				<li>Devenu standard dans le developpement d'applications web</li>
+				<li>La majeure partie des frameworks implémente ce schéma</li>
+				<li>Technique qui s'oppose au développement "<strong>procédural</strong>"</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<p>Exemple de code procédural</p>
+<pre class="php"><code>&lt;?php
+// Initialisation de la BDD
+$dbi = mysql_connect('localhost', 'root', 'password')
+    or die('Impossible de se connecter &agrave; la base');
+
+mysql_select_db('blog', $dbi)
+    or die('Base de donn&eacute;es introuvable !');
+
+// R&eacute;cup&eacute;ration de l'ID de l'article
+$idArticle = isset($_GET['id']) ? $_GET['id'] : null;
+
+// On a appuy&eacute; sur le bouton nouveau
+if (isset($_POST['submit']))
+{
+    mysql_query(sprintf(
+        'INSERT INTO articles (titre, texte) VALUES(&quot;%s&quot;, &quot;%s&quot;)',
+        mysql_real_escape_string($_POST['titre']),
+        mysql_real_escape_string($_POST['texte'])
+    ), $dbi)
+    or die(
+        sprintf('Erreur lors de la requ&ecirc;te : %s', mysql_error($dbi))
+    );
+
+    echo &quot;Article ajout&eacute; !&quot;;
+    $idArticle = mysql_insert_id($dbi);
+}
+
+$article = new StdClass();
+$article-&gt;titre = null;
+$article-&gt;texte = null;
+
+// R&eacute;cup&eacute;ration des informations dans la BDD
+if (!empty($idArticle))
+{
+    $result = mysql_query(
+        sprintf('SELECT * FROM articles WHERE id = %d', $idArticle)
+    );
+    $article = mysql_fetch_object($result);
+}
+?&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Mon blog&lt;/title&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;form method=&quot;post&quot; action=&quot;&quot;&gt;
+        &lt;p&gt;
+          &lt;label for=&quot;titre&quot;&gt;Titre&lt;/label&gt;
+          &lt;input type=&quot;text&quot; name=&quot;titre&quot; value=&quot;&lt;?php echo $article-&gt;titre; ?&gt;&quot;&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+          &lt;label for=&quot;texte&quot;&gt;Texte&lt;/label&gt;
+          &lt;textarea name=&quot;texte&quot;&gt;&lt;?php echo nl2br($article-&gt;texte); ?&gt;&lt;/textarea&gt;
+        &lt;/p&gt;
+        &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Ajouter un article&quot;&gt;
+    &lt;/form&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<ul>
+				<li>Le <strong>code procédural</strong> peut convenir à des <strong>scripts simples</strong> ou de applications de moyenne envergure</li>
+				<li>La <strong>lisibilité du code</strong> peut par contre devenir <strong>difficile</strong> sur de gros projets</li>
+				<li>Toutes les <strong>couches</strong> sont <strong>mélangées</strong> (accès aux données, vues, traitements)</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<ul>
+				<li>Le modèle MVC quant à lui permet de <strong>séparer les couches logiques d'une application</strong></li>
+				<li>Et donc les compétences métier (developpeur frontend, backend, intégrateur, ...)</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<img src="images/t8/mvc_1.png" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<ul>
+				<li><strong>M pour "model" (modèle)</strong></li>
+				<li>Ce sont les <strong>classes donnant accès aux données</strong></li>
+				<li>Encapsule la <strong>logique métier</strong></li>
+				<li>Le modèle doit être totalement <strong>indépendant du reste</strong> et ne connaît ni les controllers ni les vues</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<ul>
+				<li><strong>V pour "view" (vue)</strong></li>
+				<li>C'est la partie de l'application qui se charge de la <strong>présentation des données</strong></li>
+				<li>La vue n'est pas censé connaître la provenance des données</li>
+				<li>On peut néanmoins lui injecter directement les modèles</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<ul>
+				<li><strong>C pour "controller" (contrôleur)</strong></li>
+				<li>Composant principal du modèle</li>
+				<li>C'est la <strong>couche intermédiaire</strong></li>
+				<li>Ces classes s'occupent de <strong>charger les modèles</strong>, de les <strong>traiter</strong> et de <strong>renvoyer le résultat</strong> à la vue</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<p class="subtitle">Le "Front Controller"</p>
+			<ul>
+				<li>= <strong>Controller Frontal</strong></li>
+				<li>Unique point d'entrée de l'application (par ex. un fichier index.php)</li>
+				<li><strong>Analyse la requête client</strong> et la redirige dans le controller correspondant</li>
+				<li>C'est vers ce module que sont redirigées les règles de réécriture d'URL (<strong>URL rewriting</strong>)</li>
+				<li>Son utilisation permet de placer les controllers en-dehors de la racine du serveur Web pour protéger votre application</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<p>Revenons à notre code procédural</p>
+<pre class="php"><code>&lt;?php
+// Initialisation de la BDD
+$dbi = mysql_connect('localhost', 'root', 'password')
+    or die('Impossible de se connecter &agrave; la base');
+
+mysql_select_db('blog', $dbi)
+    or die('Base de donn&eacute;es introuvable !');
+
+// R&eacute;cup&eacute;ration de l'ID de l'article
+$idArticle = isset($_GET['id']) ? $_GET['id'] : null;
+
+// On a appuy&eacute; sur le bouton nouveau
+if (isset($_POST['submit']))
+{
+    mysql_query(sprintf(
+        'INSERT INTO articles (titre, texte) VALUES(&quot;%s&quot;, &quot;%s&quot;)',
+        mysql_real_escape_string($_POST['titre']),
+        mysql_real_escape_string($_POST['texte'])
+    ), $dbi)
+    or die(
+        sprintf('Erreur lors de la requ&ecirc;te : %s', mysql_error($dbi))
+    );
+
+    echo &quot;Article ajout&eacute; !&quot;;
+    $idArticle = mysql_insert_id($dbi);
+}
+
+$article = new StdClass();
+$article-&gt;titre = null;
+$article-&gt;texte = null;
+
+// R&eacute;cup&eacute;ration des informations dans la BDD
+if (!empty($idArticle))
+{
+    $result = mysql_query(
+        sprintf('SELECT * FROM articles WHERE id = %d', $idArticle)
+    );
+    $article = mysql_fetch_object($result);
+}
+?&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Mon blog&lt;/title&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;form method=&quot;post&quot; action=&quot;&quot;&gt;
+        &lt;p&gt;
+          &lt;label for=&quot;titre&quot;&gt;Titre&lt;/label&gt;
+          &lt;input type=&quot;text&quot; name=&quot;titre&quot; value=&quot;&lt;?php echo $article-&gt;titre; ?&gt;&quot;&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+          &lt;label for=&quot;texte&quot;&gt;Texte&lt;/label&gt;
+          &lt;textarea name=&quot;texte&quot;&gt;&lt;?php echo nl2br($article-&gt;texte); ?&gt;&lt;/textarea&gt;
+        &lt;/p&gt;
+        &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Ajouter un article&quot;&gt;
+    &lt;/form&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<ul>
+				<li>Nous allons essayer d'identifier les couches de notre code et les organiser selon le pattern MVC</li>
+				<li>Chaque couche sera séparée dans un fichier</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<p>Identification du modèle</p>
+<pre class="php greyed"><code>&lt;?php
+// Initialisation de la BDD
+<strong>$dbi = mysql_connect('localhost', 'root', 'password')
+    or die('Impossible de se connecter &agrave; la base');
+
+mysql_select_db('blog', $dbi)
+    or die('Base de donn&eacute;es introuvable !');</strong>
+
+// R&eacute;cup&eacute;ration de l'ID de l'article
+$idArticle = isset($_GET['id']) ? $_GET['id'] : null;
+
+// On a appuy&eacute; sur le bouton nouveau
+if (isset($_POST['submit']))
+{
+    <strong>mysql_query(sprintf(
+        'INSERT INTO articles (titre, texte) VALUES(&quot;%s&quot;, &quot;%s&quot;)',
+        mysql_real_escape_string($_POST['titre']),
+        mysql_real_escape_string($_POST['texte'])
+    ), $dbi)
+    or die(
+        sprintf('Erreur lors de la requ&ecirc;te : %s', mysql_error($dbi))
+    );</strong>
+
+    echo &quot;Article ajout&eacute; !&quot;;
+    $idArticle = <strong>mysql_insert_id($dbi)</strong>;
+}
+
+$article = new StdClass();
+$article-&gt;titre = null;
+$article-&gt;texte = null;
+
+// R&eacute;cup&eacute;ration des informations dans la BDD
+if (!empty($idArticle))
+{
+	<strong>
+    $result = mysql_query(
+        sprintf('SELECT * FROM articles WHERE id = %d', $idArticle)
+    );
+    $article = mysql_fetch_object($result);
+    </strong>
+}
+?&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Mon blog&lt;/title&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;form method=&quot;post&quot; action=&quot;&quot;&gt;
+        &lt;p&gt;
+          &lt;label for=&quot;titre&quot;&gt;Titre&lt;/label&gt;
+          &lt;input type=&quot;text&quot; name=&quot;titre&quot; value=&quot;&lt;?php echo $article-&gt;titre; ?&gt;&quot;&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+          &lt;label for=&quot;texte&quot;&gt;Texte&lt;/label&gt;
+          &lt;textarea name=&quot;texte&quot;&gt;&lt;?php echo nl2br($article-&gt;texte); ?&gt;&lt;/textarea&gt;
+        &lt;/p&gt;
+        &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Ajouter un article&quot;&gt;
+    &lt;/form&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<p>Identification de la vue</p>
+<pre class="php greyed"><code>&lt;?php
+// Initialisation de la BDD
+$dbi = mysql_connect('localhost', 'root', 'password')
+    or die('Impossible de se connecter &agrave; la base');
+
+mysql_select_db('blog', $dbi)
+    or die('Base de donn&eacute;es introuvable !');
+
+// R&eacute;cup&eacute;ration de l'ID de l'article
+$idArticle = isset($_GET['id']) ? $_GET['id'] : null;
+
+// On a appuy&eacute; sur le bouton nouveau
+if (isset($_POST['submit']))
+{
+    mysql_query(sprintf(
+        'INSERT INTO articles (titre, texte) VALUES(&quot;%s&quot;, &quot;%s&quot;)',
+        mysql_real_escape_string($_POST['titre']),
+        mysql_real_escape_string($_POST['texte'])
+    ), $dbi)
+    or die(
+        sprintf('Erreur lors de la requ&ecirc;te : %s', mysql_error($dbi))
+    );
+
+    echo &quot;Article ajout&eacute; !&quot;;
+    $idArticle = mysql_insert_id($dbi);
+}
+
+$article = new StdClass();
+$article-&gt;titre = null;
+$article-&gt;texte = null;
+
+// R&eacute;cup&eacute;ration des informations dans la BDD
+if (!empty($idArticle))
+{
+    $result = mysql_query(
+        sprintf('SELECT * FROM articles WHERE id = %d', $idArticle)
+    );
+    $article = mysql_fetch_object($result);
+}
+?&gt;
+<strong>
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Mon blog&lt;/title&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;form method=&quot;post&quot; action=&quot;&quot;&gt;
+        &lt;p&gt;
+          &lt;label for=&quot;titre&quot;&gt;Titre&lt;/label&gt;
+          &lt;input type=&quot;text&quot; name=&quot;titre&quot; value=&quot;&lt;?php echo $article-&gt;titre; ?&gt;&quot;&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+          &lt;label for=&quot;texte&quot;&gt;Texte&lt;/label&gt;
+          &lt;textarea name=&quot;texte&quot;&gt;&lt;?php echo nl2br($article-&gt;texte); ?&gt;&lt;/textarea&gt;
+        &lt;/p&gt;
+        &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Ajouter un article&quot;&gt;
+    &lt;/form&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</strong></code></pre>
+
+		</section>
+
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<p>Identification du controller</p>
+<pre class="php greyed"><code>&lt;?php
+// Initialisation de la BDD
+$dbi = mysql_connect('localhost', 'root', 'password')
+    or die('Impossible de se connecter &agrave; la base');
+
+mysql_select_db('blog', $dbi)
+    or die('Base de donn&eacute;es introuvable !');
+
+<strong>// R&eacute;cup&eacute;ration de l'ID de l'article
+$idArticle = isset($_GET['id']) ? $_GET['id'] : null;</strong>
+
+<strong>// On a appuy&eacute; sur le bouton nouveau
+if (isset($_POST['submit']))
+{</strong>
+    mysql_query(sprintf(
+        'INSERT INTO articles (titre, texte) VALUES(&quot;%s&quot;, &quot;%s&quot;)',
+        mysql_real_escape_string($_POST['titre']),
+        mysql_real_escape_string($_POST['texte'])
+    ), $dbi)
+    or die(
+        sprintf('Erreur lors de la requ&ecirc;te : %s', mysql_error($dbi))
+    );
+
+<strong>    echo &quot;Article ajout&eacute; !&quot;;</strong>
+    $idArticle = mysql_insert_id($dbi);
+}
+
+$article = new StdClass();
+$article-&gt;titre = null;
+$article-&gt;texte = null;
+
+// R&eacute;cup&eacute;ration des informations dans la BDD
+<strong>if (!empty($idArticle))
+{</strong>
+    $result = mysql_query(
+        sprintf('SELECT * FROM articles WHERE id = %d', $idArticle)
+    );
+    $article = mysql_fetch_object($result);
+<strong>}</strong>
+?&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Mon blog&lt;/title&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;form method=&quot;post&quot; action=&quot;&quot;&gt;
+        &lt;p&gt;
+          &lt;label for=&quot;titre&quot;&gt;Titre&lt;/label&gt;
+          &lt;input type=&quot;text&quot; name=&quot;titre&quot; value=&quot;&lt;?php echo $article-&gt;titre; ?&gt;&quot;&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+          &lt;label for=&quot;texte&quot;&gt;Texte&lt;/label&gt;
+          &lt;textarea name=&quot;texte&quot;&gt;&lt;?php echo nl2br($article-&gt;texte); ?&gt;&lt;/textarea&gt;
+        &lt;/p&gt;
+        &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Ajouter un article&quot;&gt;
+    &lt;/form&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<p>La couche métier : articleModel.php</p>
+<pre class="php no-break"><code>&lt;?php
+class Article
+{
+    protected $id;
+    protected $titre;
+    protected $texte;
+
+    public function __construct($data) {
+        foreach ((array)$data as $prop =&gt; $value)
+            $this-&gt;$prop = $value;
+    }
+
+    public function getId() {
+        return $this-&gt;id;
+    }
+
+    public function getTitre() {
+        return $this-&gt;titre;
+    }
+
+    public function getTexte() {
+        return $this-&gt;texte;
+    }
+}?&gt;
+</code></pre>
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<p>Les couche d'accès aux données (1/2) : dao.php</p>
+<pre class="php no-break"><code>&lt;?php
+// Classe g&eacute;n&eacute;rique d'acc&egrave;s &agrave; la base
+abstract class DAO
+{
+    const DB_HOST = 'localhost';
+    const DB_USER = 'user';
+    const DB_PASS = 'password';
+    const DB_NAME = 'blog';
+
+    // Instance mysql
+    protected $dbi;
+
+    public function __construct()
+    {
+        $this-&gt;dbi = mysql_connect(
+        	self::DB_HOST, self::DB_USER, self::DB_PASS
+        )
+        or throw new Exception('Impossible de se connecter &agrave; la base');
+
+        mysql_select_db(self::DB_NAME, $this-&gt;dbi)
+        or throw new Exception('Base de donn&eacute;es introuvable !');
+    }
+}?&gt;
+</code></pre>
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<p>Les couche d'accès aux données (2/2) : articleDao.php</p>
+<pre class="php"><code>&lt;?php
+require_once('dao.php');
+require_once('articleModel.php');
+
+// Classe d'acc&egrave;s &agrave; la base de donn&eacute;es
+class ArticleDAO extends DAO
+{
+    const TABLE = 'articles';
+
+    public function findById($id)
+    {
+        $queryResult = mysql_query(
+            sprintf('SELECT * FROM %s WHERE id = %d', $id),
+            self::TABLE,
+            $this-&gt;dbi
+        );
+
+        // Renvoie un objet de type StdClass des colonnes
+        $resultObj = mysql_fetch_object($result);
+
+        // Si une ligne &agrave; &eacute;t&eacute; trouv&eacute;e
+        if (!empty($resultObj))
+            return new Article($resultObj);
+
+        return false;
+    }
+
+    public function insert($data)
+    {
+        mysql_query(sprintf(
+            'INSERT INTO %s (titre, texte) VALUES(&quot;%s&quot;, &quot;%s&quot;)',
+            self::TABLE,
+            mysql_real_escape_string($data['titre']),
+            mysql_real_escape_string($data['texte'])
+        ), $this-&gt;dbi)
+       		or throw new Exception(sprintf('Erreur lors de la requ&ecirc;te : %s', mysql_error($this-&gt;dbi)));
+
+        $data['id'] = mysql_insert_id($this-&gt;dbi);
+        return new Article($data);
+    }
+}?&gt;
+</code></pre>
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<p>Le controller : articleController.php</p>
+<pre class="php"><code>&lt;?php
+require_once('articleDao.php');
+$articleDAO = new ArticleDao();
+
+switch ($action)
+{
+    case 'insert' :
+        if (!isset($_POST['submit']))
+            throw new Exception ('Données invalides !');
+
+        $article = $articleDAO-&gt;insert($_POST);
+        break;
+
+    case 'view':
+    	if (!isset($_GET['id']))
+            throw new Exception ('ID d\'article invalide !');
+
+        $article = $articleDAO-&gt;findById($id);
+        break;
+
+    default:
+        throw new Exception ('Action invalide !');
+        break;
+}
+
+include &quot;articleView.php&quot;;
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<p>La vue : articleView.php</p>
+<pre class="php"><code>&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Mon blog&lt;/title&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+	    &lt;form method=&quot;post&quot; action=&quot;index.php?controller=article&action=insert&quot;&gt;
+	        &lt;p&gt;
+    	        &lt;label for=&quot;titre&quot;&gt;Titre&lt;/label&gt;
+    	        &lt;input type=&quot;text&quot; name=&quot;titre&quot; value=&quot;&lt;?php echo $article-&gt;getTitre(); ?&gt;&quot;&gt;
+	        &lt;/p&gt;
+	        &lt;p&gt;
+    	        &lt;label for=&quot;texte&quot;&gt;Texte&lt;/label&gt;
+    	        &lt;textarea name=&quot;texte&quot;&gt;&lt;?php echo nl2br($article-&gt;getTexte()); ?&gt;&lt;/textarea&gt;
+	        &lt;/p&gt;
+	        &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Ajouter un article&quot;&gt;
+	    &lt;/form&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+		</section>
+
+		<section>
+			<h3>Le modèle MVC</h3>
+			<p>Le front controller : index.php</p>
+<pre class="php no-break"><code>&lt;?php
+// Redirige les requ&ecirc;tes de type : index.php?controller=X&amp;action=Y
+$controller = $_GET['controller'];
+$action = $_GET['action'];
+
+// On peut aussi traiter les requ&ecirc;tes de type : /controller/action/id/xxx
+
+try {
+    switch ($controller)
+    {
+        case 'article':
+            include('articleController.php');
+            break;
+
+        default:
+            throw new Exception ('Controller non trouv&eacute; !');
+            break;
+    }
+} catch (Exception $e)
+{
+    printf (&quot;Une erreur est survenue dans l'application : %s&quot;,
+        $e-&gt;getMessage()
+    );
+}
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Questions ?</h3>
+		</section>
+
+	</section>
+
+	<section>
+		<section>
+			<h2>Les Frameworks</h2>
+			<img src="images/t8/php_frameworks1.jpg" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Un framework : késako ?</h3>
+			<ul>
+				<li>Un framework est un <strong>kit de composants logiciels</strong> structurels</li>
+				<li>Il <strong>sert de base</strong> à tout ou partie d'un logiciel</li>
+				<li>Il traite une <strong>partie redondante</strong> du code des applications</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Les avantages d'un framework</h3>
+			<ul>
+				<li>Permet de ne pas réinventer la roue !</li>
+				<li><strong>Fait gagner du temps</strong> (ne plus développer systématiquement les même briques) pour se consacrer aux briques métier</li>
+				<li>Généralement développés, <strong>maintenus</strong> et sécurisés par des <strong>développeurs expérimentés</strong></li>
+				<li>Permet l'adoption d'une <strong>technologie commune aux développeurs</strong> (recrutement et collaboration simplifiés)</li>
+				<li>Ils proposent généralement des <strong>conventions de codage</strong> et sont très souvent basés sur des <strong>bonnes pratiques de développement</strong> (design patterns, ...)</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Les inconvénients d'un framework</h3>
+			<ul>
+				<li>On en oublie généralement les bases du langage</li>
+				<li>Une application simple peut être très alourdie par l'utilisation d'un framework (lenteur, complexité, ...)</li>
+				<li>On perd en "agilité" dans le développement d'applications</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Les types de frameworks</h3>
+			<ul>
+				<li>Il existe deux catégories de frameworks</li>
+				<li>Les "<strong>glue frameworks</strong>" et les "<strong>full stack frameworks</strong>"</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Full stack framework</h3>
+			<ul>
+				<li>Le framework full-stack est un framework qui offre une <strong>solution tout-en-un</strong></li>
+				<li>Toutes les fonctionnalités nécessaires aux applications sont déjà développées (routage, cache, ...)</li>
+				<li>Il faut par contre se conformer à la méthode de programmation imposée par le framework</li>
+				<li>Exemples : CakePHP, Symfony, Zend Framework, ...</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Glue framework</h3>
+			<ul>
+				<li>Le glue framework met à disposition un <strong>ensemble de composants</strong></li>
+				<li>Le liant et la logique de programmation sont à la charge du développeur</li>
+				<li>Cela permet plus de flexibilité au niveau du codage</li>
+				<li>La qualité du code intermédiaire est aussi à la charge du développeur (MVC, sécurité, ACL, ...)</li>
+				<li>Exemples : PEAR, eZ Components, Zend Framework (permet la double utilisation), CodeIgniter, ...</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Les fonctionnalités intéressantes des Frameworks</h3>
+			<ul>
+				<li>Le <strong>modèle MVC</strong> !</li>
+				<li>La gestion des <strong>templates</strong> (gabarits)</li>
+				<li>L'<strong>accès aux données</strong> (couche d'abstraction, ORM, Webservices, ...)</li>
+				<li>Différents <strong>systèmes de cache</strong> (Mémoire, Fichier, ...)</li>
+				<li><strong>Génération de code</strong> (structure du projet, vues, controllers, ...)</li>
+				<li>Gestion de la <strong>réécriture des URLs</strong></li>
+				<li>Prise en charge de l'<strong>Ajax</strong> (librairies incluses, requêtes, controllers spécifiques ...)</li>
+			</ul>
+		</section>
+
+	</section>
+
+	<section>
+		<section>
+			<h2>Bonnes pratiques</h2>
+			<img src="images/t8/mrpropre.jpeg" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Adopter un bon IDE</h3>
+			<ul>
+				<li>IDE = <strong>Environnement de développement</strong></li>
+				<li>Un bon IDE permettra aussi de faire <strong>gagner du temps</strong> de développement</li>
+				<li>Bien qu'on puisse développer avec un simple éditeur de texte (Notepad++, Vim, ...)</li>
+				<li>Fonctionnalités interessantes : contrôle de code (Git, Subversion), coloration syntaxique, autocomplétion, debugger, FTP, ...</li>
+				<li>Exemples d'IDE : Eclipse, Zend Studio, Netbeans, PHPEdit ...</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Adopter un bon IDE</h3>
+			<img src="images/t8/plugin-sf-eclipse-annotationcompletion.png" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Environnements</h3>
+			<ul>
+				<li>Il est très recommandé de disposer de différents environnements dans le <strong>cycle de production</strong> d'une application</li>
+				<li>Généralement 3 étapes (serveurs) sont utilisées lors du développement d'un projet</li>
+				<li>Un environnement de <strong>développement</strong></li>
+				<li>Un environnement de <strong>test</strong> (ou recette)</li>
+				<li>Un environnement de <strong>production</strong></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Environnements (développement)</h3>
+			<ul>
+				<li>Le serveur de développement est utilisé, comme son nom l'indique, pour le développement</li>
+				<li>Généralement <strong>non accessible depuis l'exterieur</strong></li>
+				<li>Le <strong>code est en cours d'écriture</strong> est n'est donc probablement pas stable</li>
+				<li>Sont installés sur ce serveur tous les <strong>outils nécessaires au développement</strong> (debugger, profiler, ...)</li>
+				<li>Plusieurs développeurs peuvent travailler sur le même projet</li>
+				<li>Ce serveur peut se permettre d'être plus lent</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Environnements (test)</h3>
+			<ul>
+				<li>Le serveur de test <strong>est hébergé</strong> en ligne et accesible via une adresse temporaire</li>
+				<li>Il contient une <strong>version testable du code, à jour des modifications</strong> fusionnées des différents développeurs</li>
+				<li>Sa <strong>configuration</strong> devrait être la même que celle du <strong>serveur de production</strong></li>
+				<li>On utilise cette version de l'application pour la faire <strong>valider à l'équipe et au client</strong></li>
+				<li>Cette version est <strong>mise à jour</strong> sur le serveur <strong>tant que les bugs identifiés n'auront pas été corrigés</strong></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Environnements (production)</h3>
+			<ul>
+				<li>Le serveur de production est la <strong>dernière phase de déploiement</strong> du projet</li>
+				<li>Il contient une <strong>version stable du code</strong></li>
+				<li><strong>Le code ne doit jamais être modifié directement en production !</strong></li>
+				<li>Il faut réitérer le cycle dev -> test -> vérification avant de passer une modification en production</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Test Unitaires</h3>
+			<ul>
+				<li>Ils permettent de <strong>valider le code de l'application</strong> pendant toute la vie du projet</li>
+				<li>Le lancement des tests est généralement automatisé, on parle alors de "<strong>suites de tests</strong>"</li>
+				<li>Il existe plusieurs outils PHP pour écrire les tests de vos applications : PHPUnit, SimpleTest, ...</li>
+				<li>L'écriture se base sur des <strong>assertions</strong> (conditions qui doivent être vérifiées)</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Test Unitaires</h3>
+			<ul>
+				<li>Un <strong>test unitaire</strong> doit être écrit à <strong>chaque rapport de bug</strong></li>
+				<li>Cela permet de <strong>valider l'existence du bug</strong> et sa résolution effective</li>
+				<li>On évite de ce fait les <strong>régressions</strong> (réapparition d'anciens bugs)</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Test Unitaires</h3>
+<pre class="php no-break"><code>&lt;?php
+class TableauTest extends PHPUnit_Framework_TestCase
+{
+    public function testVide()
+    {
+        $tableau = array();
+        $this-&gt;assertEmpty($tableau);
+
+        return $tableau;
+    }
+
+    public function testAjout(array $tableau)
+    {
+        array_push($tableau, 'foo');
+        $this-&gt;assertEquals('foo', $tableau[count($tableau)-1]);
+        $this-&gt;assertNotEmpty($tableau);
+
+        return $tableau;
+    }
+}
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Test Unitaires</h3>
+			<ul>
+				<li>On peut <strong>orienter le développement par les tests</strong> (<strong>Test Driven Development</strong>)</li>
+				<li><strong>On écrit les tests avant le code !</strong></li>
+				<li>C'est le test qui décrit le besoin fonctionnel</li>
+			</ul>
+		</section>
+
+
+		<section>
+			<h3>Test Unitaires</h3>
+<pre class="php no-break"><code>&lt;?php
+class PersonneTest extends PHPUnit_Framework_TestCase
+{
+    public function testAUnNom() {}
+    public function testAUnNomValide() {}
+
+    public function testAUnNomPrenom() {}
+    public function testAUnNomPrenomValide() {}
+
+    public function testAUneDateDeNaissance() {}
+    public function testAUneDateDeNaissanceValide() {}
+    public function testAUneDateDeNaissanceQuiNEstPasDansLeFutur() {}
+
+	...
+}
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Test Unitaires</h3>
+			<img src="images/t8/zse-Unit-Testing-Code-Coverage.gif" style="height: 100%; " />
+		</section>
+
+		<section>
+			<h3>Debugging</h3>
+			<ul>
+				<li>Les application deviennent de plus en plus complexes</li>
+				<li>Il n'est <strong>plus gérable</strong> de les déboguer avec de l'<strong>affichage de code</strong> (echo, die, var_dump, ...)</li>
+				<li>Il est primordial d'utiliser une solution permettant de <strong>déboguer efficacement les scripts</strong> (points d'arrêt, états des variables, pas à pas, ...)</li>
+				<li>Ces extensions existent pour PHP : <strong>XDebug</strong>, <strong>Zend Debugger</strong>, DBG (obsolète)</li>
+				<li>Elles permettent aussi de <strong>profiler les applications</strong> (temps d'exécution par fonction)</li>
+				<li>Ces extensions sont du coup de <strong>bons outils d'optimisation du code</strong></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Debugging</h3>
+			<img src="images/t8/screenshot-eclipse.png" style="width: 100%; max-width: none; max-height: none;" />
+		</section>
+
+		<section>
+			<h3>Design patterns</h3>
+			<ul>
+				<li>Un ￼<strong>motif de conception</strong> (design pattern) est une technique permettant de <strong>résoudre un problème commun</strong></li>
+				<li>Plutôt que de réinventer la roue : autant réutiliser un schéma dont la <strong>résolution a déjà été identifiée</strong></li>
+				<li>Tous les motifs de conception utilisent très largement des <strong>concepts de POO</strong></li>
+				<li>Exemple du schéma MVC vu précédemment</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Design patterns : exemple</h3>
+			<ul>
+				<li>Le pattern <strong>Registry</strong></li>
+				<li>Il permet d'<strong>éviter l'utilisation des variables superglobales</strong></li>
+				<li>C'est une classe qui regroupe toutes les variables globales</li>
+				<li>Il permet de résoudre les problèmes de portée (scope)</li>
+				<li>Il repose sur le pattern <strong>Singleton</strong></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Design patterns : exemple</h3>
+			<ul>
+				<li>Le pattern <strong>Singleton</strong></li>
+				<li>Assure de n'avoir qu'<strong>une seule instance de la classe</strong> dans le code</li>
+				<li>On rend la <strong>méthode constructeur protégée</strong> afin d'empêcher directement l'instanciation de la classe</li>
+				<li>On utilise à la place une méthode statique pour construire une instance unique (par convention : getInstance)</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Design patterns : exemple</h3>
+<pre><code>&lt;?php
+class Registry
+{
+	protected $instance;
+
+	protected function __construct() {}
+
+    public static function getInstance()
+    {
+        if(empty(self::$instance))
+        {
+            self::$instance = new self();
+        }
+    }
+}
+?&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Optimisation</h3>
+			<ul>
+				<li>L'optimisation du code se fait quand l'application fonctionne parfaitement</li>
+				<li>Cela consiste à <strong>réduire son temps d'exécution</strong> et sa <strong>consommation de mémoire</strong></li>
+				<li>Ce qui prend le plus de temps sont les <strong>accès réseaux</strong> (BDD, API, ...) et les <strong>accès disques</strong></li>
+				<li>On utilise prioritairement des <strong>techniques de cache</strong> (OpCode, Fichiers, ...)</li>
+				<li>On essaiera de <strong>factoriser</strong> (dans la mesure du raisonnable) le code pour éviter la duplication de code</li>
+				<li>Attention : trop optimiser le code (ou optimiser trop tôt) produit habituellement du code très complexe et difficile à maintenir</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Autres bonnes pratiques</h3>
+			<ul>
+				<li>Sécurisation du code (injection SQL, XSS, ...)</li>
+				<li>Les commentaires de code</li>
+				<li>Conventions de nommage</li>
+				<li>Hashage des mot de passe</li>
+				<li>Utilisation des constantes plutôt que des variables "en dur" dans le code</li>
+				<li>...</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Questions ?</h3>
+		</section>
+
+	</section>

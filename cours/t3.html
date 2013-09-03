@@ -1,0 +1,1131 @@
+
+				<section>
+					<h1>Développement de Web Apps mobiles</h1>
+					<p>ISEN - CIR3 - 2012/2013</p>
+					<p style="margin-top: 60px; font-size: 36px;"><strong>Sylvain Jaune</strong></p>
+					<p>sjaune@gmail.com</p>
+					<p>www.sylvain-jaune.com</p>
+				</section>
+
+				<section>
+					<h2>Sommaire</h2>
+					<ol>
+						<li><strong>Partie 1</strong>
+							<ul>
+								<li>Contexte et enjeux</li>
+								<li>Définitions</li>
+								<li>Application native vs Web App mobile</li>
+							</ul>
+						</li>
+						<li><strong>Partie 2</strong>
+							<ul>
+								<li>Anatomie d'une Web App</li>
+								<li>Fonctionnalités CSS3</li>
+								<li>Fonctionnalités HTML5</li>
+								<li>Bonnes pratiques</li>
+							</ul>
+						</li>
+						<li><strong>Etude de cas</strong></li>
+						<li><strong>Conclusion</strong></li>
+					</ol>
+				</section>
+
+				<!-- SPECIFICITE -->
+				<section>
+					<section>
+						<h2>Contexte et enjeux</h2>
+						<img src="images/t3/000000024945.png" style="height: 100%;" />
+					</section>
+
+					<section>
+						<h3>Le marché du mobile</h3>
+						<ul>
+							<li class="fragment">Explosion de l'utilisation de smartphones et des tablettes</li>
+							<li class="fragment">20 millions de smartphones pour 2 millions de tablettes</li>
+							<li class="fragment">En 2011 : Plus de smartphones vendus que de mobiles classiques (11,9M contre 11,8M)</li>
+							<li class="fragment">En 2014 le nombre d'utilisateurs d'Internet mobile devrait dépasser le nombre d'internautes standards</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Profils des utilisateurs</h3>
+						<img src="images/t3/repartition-possesseur-tabl.jpeg" style="height: 100%;" />
+					</section>
+
+					<section>
+						<h3>De nouveaux usages</h3>
+						<ul>
+							<li class="fragment">Utilisation en mobilité
+								<ul>
+									<li>91% des utilisateurs gardent leur téléphone sur eux</li>
+								</ul>
+							</li>
+							<li class="fragment">Utilisation de fonctionnalités supplémentaires par rapport à un ordinateur standard :
+								<ul>
+									<li class="fragment">Appareil photo / Caméra</li>
+									<li class="fragment">Localisation (GPS)</li>
+									<li class="fragment">Détection de l'orientation du terminal (portrait / paysage)</li>
+								</ul>
+							</li>
+							<li class="fragment">Un besoin rapide d'accéder à l'information</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>De nouvelles attentes</h3>
+						<ul>
+							<li class="fragment">Un besoin rapide d'accéder à l'information</li>
+							<li class="fragment">En France, seulement 14,3% des personnes sont prêtes à attendre plus de 5 secondes</li>
+							<li class="fragment">Dans 20% des cas le site visualisé sur mobile est en erreur</li>
+							<li class="fragment">Pire, dans 16% des cas la version mobile n'est même pas disponible</li>
+							<li class="fragment">Le web mobile devrait fonctionner aussi bien que le web standard</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>De nouvelles contraintes ergonomiques</h3>
+						<ul>
+							<li class="fragment">Nécessité de repenser les sites et applications pour ce format</li>
+							<li class="fragment">Taille et résolution des écrans réduites</li>
+							<li class="fragment">De nouvelles fonctionnalités sont disponibles :
+								<ul>
+									<li class="fragment">Composition des numéros de téléphone depuis l'application</li>
+									<li class="fragment">Géolocalisation de l'utilisateur</li>
+									<!--
+									<li class="fragment">Partage de l'information</li>
+									<li class="fragment">...</li>
+									 -->
+								</ul>
+							</li>
+							<li class="fragment">+ toutes les règles du web actuel qui s'appliquent aussi</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>De nouvelles contraintes techniques</h3>
+						<ul>
+							<li class="fragment">Diversité des terminaux à supporter :
+								<ul>
+									<li class="fragment">Systèmes d'exploitation</li>
+									<li class="fragment">Navigateurs Internet</li>
+									<li class="fragment">Résolutions et tailles d'écran</li>
+								</ul>
+							</li>
+							<li class="fragment">Gestion de la connectivité (utilisation de la bande passante)
+								<ul>
+									<li class="fragment">La bande passante n'est pas totalement gratuite sur les mobiles !</li>
+									<li class="fragment">il faudra penser "léger" pendant le développement (optimisation des éléments, images, ...)</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+				</section>
+
+				<section>
+
+					<section>
+						<h2>Application native, Web App mobile<br />
+						C'est quoi la différence ?</h2>
+						<img class="no-borders" style="height: 100%;" src="images/t3/native_apps_vs_web_apps.jpeg" />
+					</section>
+
+					<section>
+						<h3>L'application native</h3>
+						<ul>
+							<li class="fragment">C'est une application développée spécifiquement pour des terminaux mobiles (smartphones, tablettes, …)</li>
+							<li class="fragment">Elle est téléchargée (généralement depuis une boutique en ligne) sous forme d'un exécutable et installée sur le terminal</li>
+							<li class="fragment">Elle est développée dans un langage spécifique à chaque plateforme
+								<ul>
+									<li>Java (Android)</li>
+									<li>Objective-C (iOS)</li>
+									<li>Visual C++ (Windows Mobile)</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>La Web App mobile ?</h3>
+						<ul>
+							<li class="fragment">Web App = <strong>Web</strong> <strong>App</strong>lication
+								<ul>
+									<li class="fragment">pour les nuls en anglais = <strong>Application Web</strong></li>
+								</ul>
+							</li>
+							<li class="fragment">Application accessible depuis le navigateur Internet du mobile</li>
+							<li class="fragment">Programmée en HTML5 / CSS3 / Javascript</li>
+							<li class="fragment">Hébergée sur un serveur web distant</li>
+							<li class="fragment">Le langage de développement côté serveur est laissé au choix du développeur (PHP, Rails, Python, …)</li>
+							<!--
+							<li class="fragment">Son ergonomie et son utilisation simule ceux des applications natives</li>
+							 -->
+						</ul>
+					</section>
+
+				</section>
+
+				<section>
+
+					<section>
+						<h2>Alors ? Web App ou Application native ?</h2>
+						<img class="no-borders" style="height: 100%;" src="images/t3/mobile-app-vs-mobile-web1.png" />
+					</section>
+
+					<section>
+						<h3>Application native</h3>
+						<p class="fragment subtitle">Les Forces</p>
+						<ul>
+							<li class="fragment">Meilleure ergonomie et rapidité d'exécution</li>
+							<li class="fragment">Exécutable compilé autonome</li>
+							<li class="fragment">Installé directement sur le terminal</li>
+							<li class="fragment">Utilisation des fonctionnalités hardware de la machine</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Application native</h3>
+						<p class="fragment subtitle">Les Faiblesses</p>
+						<ul>
+							<li class="fragment">Langage de développement spécifique à chaque plateforme</li>
+							<li class="fragment">Coût de développement plus élevé qu'une Web App</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Web App mobile</h3>
+						<p class="fragment subtitle">Les Forces</p>
+						<ul>
+							<li class="fragment">Accessible depuis le navigateur
+							<li class="fragment">Cross platforms / cross devices
+								<ul>
+									<li class="fragment">HTML / CSS et Javascript suffisent</li>
+									<li class="fragment">Pas de nouveau langage à apprendre <span class="fragment">... Ouf !</span></li>
+								</ul>
+							</li>
+							<li class="fragment">Mises à jours directement appliquées à tous les utilisateurs</li>
+							<li class="fragment">Permet de tester son application avant de la porter en natif</li>
+							<li class="fragment">Coût de développement raisonnable</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Web App mobile</h3>
+						<p class="fragment subtitle">Les Faiblesses</p>
+						<ul>
+							<li class="fragment">Accès limité aux fonctionnalités hardware du terminal
+								<ul>
+									<li class="fragment">Utilisation uniquement des fonctionnalités de l'API HTML5 et CSS3</li>
+									<li class="fragment">Orientation, géolocalisation, vidéos, ...</li>
+								</ul>
+							</li>
+							<li class="fragment">Tests de compatibilités sur les OS et navigateurs difficile à assurer pour tous les modèles de terminaux</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Et la réponse est...</h3>
+						<p class="fragment"><strong>Que le choix de la solution va directement dépendre du contexte projet !<span class="fragment"><br />(facile la réponse...)</span></strong></p>
+						<p class="fragment">Eléments à prendre en compte (entre autres) :</p>
+						<ul>
+							<li class="fragment">Contraintes de coûts et de délais</li>
+							<li class="fragment">Compétences de développement disponibles</li>
+							<li class="fragment">Contraintes techniques du projet (utilisation du hardware, application payante ou non, ...)</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Des questions ?</h2>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h2>Anatomie d'une Web App</h2>
+						<img src="images/t3/6-Anatomy-of-Cell-Phone.jpeg" style="width: 100%;" />
+					</section>
+
+					<section>
+						<h3>Structure du HTML</h3>
+						<pre class="no-break"><code>&lt;!DOCTYPE html&gt;
+&lt;html manifest=&quot;cache.manifest&quot;&gt;
+&lt;head&gt;
+
+	&lt;meta name=&quot;viewport&quot; content=&quot;user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0&quot;/&gt;
+
+	&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;
+	&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;black&quot; /&gt;
+	&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=yes&quot; /&gt;
+
+	&lt;link rel=&quot;apple-touch-icon&quot; href=&quot;apple-icon-iphone.png&quot;/&gt;
+	&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;72x72&quot; href=&quot;apple-icon-ipad.png&quot;/&gt;
+	&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;114x114&quot; href=&quot;apple-icon-iphone4.png&quot;/&gt;
+	&lt;link rel=&quot;apple-touch-startup-image&quot; href=&quot;startup.png&quot; /&gt;
+</code></pre>
+					</section>
+
+					<section>
+						<h3>Le DocType</h3>
+						<code>&lt;!DOCTYPE html&gt;</code>
+						<ul>
+							<li>C'est tout ce dont vous avez besoin pour déclarer que c'est une page HTML5 !</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Le manifest</h3>
+						<pre class="no-break"><code>&lt;!DOCTYPE html&gt;
+&lt;html manifest=&quot;cache.manifest&quot;&gt;
+&lt;head&gt;
+
+	&lt;meta name=&quot;viewport&quot; content=&quot;user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0&quot;/&gt;
+
+	&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;
+	&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;black&quot; /&gt;
+	&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=yes&quot; /&gt;
+
+	&lt;link rel=&quot;apple-touch-icon&quot; href=&quot;apple-icon-iphone.png&quot;/&gt;
+	&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;72x72&quot; href=&quot;apple-icon-ipad.png&quot;/&gt;
+	&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;114x114&quot; href=&quot;apple-icon-iphone4.png&quot;/&gt;
+	&lt;link rel=&quot;apple-touch-startup-image&quot; href=&quot;startup.png&quot; /&gt;
+</code></pre>
+				</section>
+
+					<section>
+						<h3>Le manifest</h3>
+						<pre><code>&lt;html manifest=&quot;webapp.manifest&quot;&gt;</code></pre>
+						<ul>
+							<li>Le fichier manifest gère la liste des éléments à mettre en cache sur le terminal</li>
+							<li>Utile pour développer un mode "offline" de son application (avec le cache d'application HTML5)</li>
+							<li>Cette déclaration n'est pas obligatoire</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Le manifest</h3>
+					<pre><code>CACHE MANIFEST
+# Commentaires
+# v0.1
+index.html
+images/image1.png
+css/styles.css</code></pre>
+					<ul>
+						<li>Extension de fichier .manifest
+						<li>Type MIME text/manifest à déclarer au niveau du serveur web ou dans un .htaccess</li>
+						<li>Commence obligatoirement par CACHE MANIFEST</li>
+						<li>Les fichiers à mettre en cache sont déclarés ligne par ligne</li>
+						<li>Les commentaires commencent par un dièse (#)</li>
+					</ul>
+					</section>
+
+					<section>
+						<h3>Le manifest</h3>
+						<p class="subtitle">Syntaxe complète</p>
+					<pre><code>CACHE MANIFEST
+# Commentaires
+# v0.1
+
+CACHE:
+index.html
+images/image1.png
+css/styles.css
+
+FALLBACK:
+/ /offline.html
+
+NETWORK:
+*
+</code></pre>
+					</section>
+
+					<section>
+						<h3>Le manifest</h3>
+						<p class="subtitle">Syntaxe complète</p>
+					<ul>
+<li><strong>CACHE</strong> : section par défaut qui liste les fichiers à mettre en cache</li>
+<li><strong>NETWORK</strong> :  liste les fichiers qui nécessitent obligatoirement une connexion internet
+	<ul>
+		<li>Le wildcard * = tous les autres fichiers</li>
+	</ul>
+</li>
+<li><strong>FALLBACK</strong> : liste les fichiers qui, au cas où ils ne soient pas accessibles en ligne, doivent renvoyer vers d’autres fichiers</li>
+					</ul>
+					</section>
+
+
+					<section>
+						<h3>Le viewport</h3>
+						<p class="subtitle">Dimensions de l'iPhone</p>
+						<img src="images/t3/safarimetrics.jpeg" style="height: 100%;" />
+						<ul>
+							<li>Tout l'écran n'est pas disponible cause de la barre du navigateur et de la barre de statut</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Le viewport</h3>
+						<p>C'est la surface d'affichage disponible sur le terminal</p>
+					</section>
+
+					<section>
+						<h3>Le viewport</h3>
+						<p class="subtitle">Différence entre Safari et Safari mobile</p>
+						<img src="images/t3/safarinotthesame.jpeg" style="height: 100%;" />
+					</section>
+
+					<section>
+						<h3>Le viewport</h3>
+						<p class="subtitle">Page web sur iPhone avec viewport par défaut</p>
+						<img src="images/t3/vp980notspecified.jpeg" style="height: 100%;" />
+						<p>Taille par défaut du viewport = 980px</p>
+					</section>
+
+					<section>
+						<h3>Le viewport</h3>
+						<p class="subtitle">Même image avec un viewport de 320</p>
+						<img src="images/t3/vp320width.jpeg" style="height: 100%;" />
+					</section>
+
+					<section>
+						<h3>Le viewport</h3>
+						<p class="subtitle">Viewport avec un zoom (150%)</p>
+						<img src="images/t3/vp320width150scale.jpeg" style="height: 100%;" />
+						<p>Le viewport peut donc être plus grand que le zone visible</p>
+					</section>
+
+					<section>
+						<h3>Le viewport</h3>
+						<p class="subtitle">Viewport avec un zoom inférieur (50%)</p>
+						<img src="images/t3/vp320width50scale.jpeg" style="height: 100%;" />
+						<p>Le viewport peut donc être aussi plus petit que le zone visible</p>
+					</section>
+
+					<section>
+						<h3>La meta viewport</h3>
+						<pre class="no-break"><code>&lt;!DOCTYPE html&gt;
+&lt;html manifest=&quot;cache.manifest&quot;&gt;
+&lt;head&gt;
+
+	&lt;meta name=&quot;viewport&quot; content=&quot;user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0&quot;/&gt;
+
+	&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;
+	&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;black&quot; /&gt;
+	&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=yes&quot; /&gt;
+
+	&lt;link rel=&quot;apple-touch-icon&quot; href=&quot;apple-icon-iphone.png&quot;/&gt;
+	&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;72x72&quot; href=&quot;apple-icon-ipad.png&quot;/&gt;
+	&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;114x114&quot; href=&quot;apple-icon-iphone4.png&quot;/&gt;
+	&lt;link rel=&quot;apple-touch-startup-image&quot; href=&quot;startup.png&quot; /&gt;
+</code></pre>
+				</section>
+
+					<section>
+						<h3>La meta viewport</h3>
+
+						<pre><code>&lt;meta name=&quot;viewport&quot; content=&quot;user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0&quot;/&gt;</code></pre>
+						<ul>
+							<li><strong>user-scalable</strong> : Permission de zoomer / dé-zoomer</li>
+							<li><strong>width</strong> : Largeur de la zone d’affichage (980px par défaut)
+								<ul>
+									<li><strong>device-width</strong> : Largeur déclarée par le périphérique</li>
+									<li><strong>screen-width</strong> : Largeur physique de l’écran</li>
+									<li><strong>viewport</strong> : Largeur de la fenêtre du navigateur</li>
+									<li><span style="font-style: italic;">ou n'importe quel nombre : width=600</span></li>
+								</ul>
+							</li>
+							<li><strong>height</strong> : Hauteur de la zone d’affichage
+								<ul>
+									<li><strong>device-height</strong>, <strong>screen-height</strong>, ... même comportement que ci-dessus</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>La meta viewport</h3>
+						<p class="subtitle">Settings par défaut pour les pages web</p>
+						<img src="images/t3/980looksgood.jpeg" style="height: 100%;" />
+					</section>
+
+					<section>
+						<h3>La meta viewport</h3>
+						<p class="subtitle">Comparaison des largeurs 320px et 980px</p>
+						<img src="images/t3/defaultwidthcomparison.jpeg" style="height: 100%;" />
+					</section>
+
+					<section>
+						<h3>La meta viewport</h3>
+						<p class="subtitle">Page web trop étroite pour du 980px</p>
+						<img src="images/t3/toonarrow.jpeg" style="height: 100%;" />
+					</section>
+
+					<section>
+						<h3>La meta viewport</h3>
+						<p class="subtitle">Application web trop petite pour du 980px</p>
+						<img src="images/t3/toosmall.jpeg" style="height: 100%;" />
+					</section>
+
+					<section>
+						<h3>La meta viewport</h3>
+						<pre><code>&lt;meta name=&quot;viewport&quot; content=&quot;user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0&quot;/&gt;</code></pre>
+						<ul>
+							<li><strong>initiale-scale</strong> : Zoom initial au chargement de la page (1 à 9).</li>
+							<li><strong>maximum-scale</strong> : Zoom maximum (commence à 1 et fini à 9).</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Les metas spécifiques iOS</h3>
+						<pre class="no-break"><code>&lt;!DOCTYPE html&gt;
+&lt;html manifest=&quot;cache.manifest&quot;&gt;
+&lt;head&gt;
+
+	&lt;meta name=&quot;viewport&quot; content=&quot;user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0&quot;/&gt;
+
+	&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;
+	&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;black&quot; /&gt;
+	&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=yes&quot; /&gt;
+
+	&lt;link rel=&quot;apple-touch-icon&quot; href=&quot;apple-icon-iphone.png&quot;/&gt;
+	&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;72x72&quot; href=&quot;apple-icon-ipad.png&quot;/&gt;
+	&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;114x114&quot; href=&quot;apple-icon-iphone4.png&quot;/&gt;
+	&lt;link rel=&quot;apple-touch-startup-image&quot; href=&quot;startup.png&quot; /&gt;
+</code></pre>
+				</section>
+					<section>
+						<h3>Les metas spécifiques iOS</h3>
+						<ul>
+							<li><strong>apple-mobile-web-app-capable</strong> : Définit si l'application se lance en plein écran (masquage de l'interface de Safari)</li>
+							<li><strong>apple-mobile-web-app-status-bar-style</strong> : Style de la barre de statut (default, black, black-translucent)</li>
+							<li><strong>format-detection</strong> : Active ou désactive la reconnaissance automatique des numéros de téléphone</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Le WebClip iOS</h3>
+						<pre class="no-break"><code>&lt;!DOCTYPE html&gt;
+&lt;html manifest=&quot;cache.manifest&quot;&gt;
+&lt;head&gt;
+
+	&lt;meta name=&quot;viewport&quot; content=&quot;user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0&quot;/&gt;
+
+	&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;
+	&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;black&quot; /&gt;
+	&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=yes&quot; /&gt;
+
+	&lt;link rel=&quot;apple-touch-icon&quot; href=&quot;apple-icon-iphone.png&quot;/&gt;
+	&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;72x72&quot; href=&quot;apple-icon-ipad.png&quot;/&gt;
+	&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;114x114&quot; href=&quot;apple-icon-iphone4.png&quot;/&gt;
+	&lt;link rel=&quot;apple-touch-startup-image&quot; href=&quot;startup.png&quot; /&gt;
+</code></pre>
+				</section>
+
+					<section>
+						<h3>Le WebClip iOS</h3>
+						<p class="subtitle">web clip = signet web (en page d'accueil)</p>
+						<ul>
+							<li><strong>apple-touch-icon</strong> :
+								<ul>
+									<li>57x57 (valeur par défaut non obligatoire) : iPhone 3</li>
+									<li>72x72 : iPhone 4</li>
+									<li>114x114 : iPad</li>
+								</ul>
+							</li>
+							<li>Si le suffixe <span style="font-style: italic;">-precomposed</span> (precomposé) est utilisé <strong>apple-touch-icon-precomposed</strong>, iOS n'appliquera aucun effet sur l'icône</li>
+							<li>Si la balise link est absente, le système cherchera les images à la racine dans l'ordre suivant :
+								<ol>
+									<li>apple-touch-icon-57x57-precomposed.png</li>
+									<li>apple-touch-icon-57x57.png</li>
+									<li>apple-touch-icon-precomposed.png</li>
+									<li>apple-touch-icon.png</li>
+								</ol>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Le Splash Screen iOS</h3>
+						<pre class="no-break"><code>&lt;!DOCTYPE html&gt;
+&lt;html manifest=&quot;cache.manifest&quot;&gt;
+&lt;head&gt;
+
+	&lt;meta name=&quot;viewport&quot; content=&quot;user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0&quot;/&gt;
+
+	&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;
+	&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;black&quot; /&gt;
+	&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=yes&quot; /&gt;
+
+	&lt;link rel=&quot;apple-touch-icon&quot; href=&quot;apple-icon-iphone.png&quot;/&gt;
+	&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;72x72&quot; href=&quot;apple-icon-ipad.png&quot;/&gt;
+	&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;114x114&quot; href=&quot;apple-icon-iphone4.png&quot;/&gt;
+	&lt;link rel=&quot;apple-touch-startup-image&quot; href=&quot;startup.png&quot; /&gt;
+</code></pre>
+				</section>
+
+					<section>
+						<h3>Le Splash Screen iOS</h3>
+						<p class="subtitle fragment">splash screen = Ecran de chargement de l'application</p>
+
+<pre><code>&lt;link rel=&quot;apple-touch-startup-image&quot; href=&quot;startup.png&quot; /&gt;</code></pre>
+						<ul>
+							<li><strong>apple-touch-startup-image</strong> : 320x640 par défaut pour l'iPhone (en mode portrait uniquement)</li>
+							<li>L'attribut "<strong>sizes</strong>" ne fonctionne pas ! Il faut utiliser un fix CSS3 (media queries)... on y revient plus tard.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>C'est tout ?<span class="fragment"><br />Ben oui !</span></h3>
+						<ul>
+							<li class="fragment">Une Web App c'est un site web comme les autres</li>
+							<li class="fragment">C'est son ergonomie et ses fonctionnalités qui vont en faire une application</li>
+							<li class="fragment">C'est donc très facile de créer une Web App, mais elle ne sera pas fonctionnelle et l'ergonomie par spécialement adaptée</li>
+							<li class="fragment">HTML5 et CSS3 à la rescousse...</li>
+						</ul>
+					</section>
+
+				</section>
+
+				<section>
+
+					<section>
+						<h2>Fonctionnalités CSS3</h2>
+						<img src="images/t3/css3.jpeg" style="width: 100%;" />
+					</section>
+
+					<section>
+						<h3>Généralités</h3>
+						<ul>
+							<li class="fragment">Les terminaux mobiles utilisent (quasiment) tous les fonctionnalités de CSS3, alors pourquoi s'en priver !</li>
+							<li class="fragment">Je vous invite donc à utiliser sans modération (avec parcimonie tout de même) :
+								<ul>
+									<li class="fragment">Les bordures</li>
+									<li class="fragment">Les effets de texte</li>
+									<li class="fragment">Les transitions</li>
+									<li class="fragment">Les animations</li>
+									<li class="fragment">Les transformations 2D et 3D</li>
+									<li class="fragment"><span style="font-style: italic;">et plein d'autres joyeusetés !</span></li>
+									<li class="fragment">Il faudra cependant utiliser certains préfixes navigateur pour assurer la compatbilité :
+										<ul>
+											<li class="fragment"><strong>-webkit-</strong> : iOS Safari / Android Browser</li>
+											<li class="fragment"><strong>-o-</strong> : Opéra</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Le responsive design</h3>
+						<p class="subtitle">responsive design = site web adaptable</p>
+						<img src="images/t3/responsive_design.png" style="height: 100%;" />
+					</section>
+
+					<section>
+						<h3>Le responsive design</h3>
+						<ul>
+							<li class="fragment">Ce n'est pas à proprement parler une fonctionnalité CSS3</li>
+							<li class="fragment">C'est plutôt une technique de conception (HTML/CSS)</li>
+							<li class="fragment">L'application et le contenu s'adaptent aux différentes tailles d'écrans et aux différents terminaux
+								<ul>
+									<li class="fragment">Minimum de 480px et max de 640px pour les mobiles</li>
+									<li class="fragment">720px pour les tablettes</li>
+									<li class="fragment">960px max pour les versions desktop</li>
+								</ul>
+							</li>
+							<li class="fragment">Cette technique utilise massivement les <strong>media queries</strong> CSS</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Le responsive design</h3>
+						<p class="subtitle">Exemple</p>
+						<img src="images/t3/responsive-design-example1.jpeg" style="height: 100%;" />
+					</section>
+
+					<section>
+						<h3>Le responsive design</h3>
+						<p class="subtitle">Exemple</p>
+						<img src="images/t3/Responsive-Web-Design-Examples-Templates-and-Frameworks-29.jpeg" style="height: 100%;" />
+					</section>
+
+
+					<section>
+						<h3>Les Media Queries</h3>
+						<p class="subtitle fragment">Une aubaine pour vos Web Apps !</p>
+
+						<ul>
+							<li class="fragment">Une réquête media consiste à cibler un type de média (ecran, print, ...) et une ou plusieurs conditions sur ses fonctionnalités (taille de l'écran, orientation, couleur, ...)</li>
+							<li class="fragment">Les sites standards ne sont pas par défaut adaptés à la lecture sur mobile</li>
+							<li class="fragment">On va donc faire appel à CSS3 et aux media queries pour y remedier pour charger des règles spécifiques
+								<ul>
+									<li class="fragment"><strong>orientation</strong> : Orientation de l'écran (portrait, paysage)</li>
+									<li class="fragment"><strong>min-width</strong>, <strong>max-width</strong> (idem avec height) : Résolution d'écran</li>
+									<li class="fragment"><strong>device-aspect-ratio</strong> : Ratio d'affichage (4/3, 16/9)</li>
+									<li class="fragment"><strong>device-pixel-ratio</strong> : Densité de pixels (pour les écrans Haute Qualité - le Retina Display d'Apple par exemple)</li>
+									<li class="fragment" style="font-style: italic;">et bien d'autres à découvrir !</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Les Media Queries</h3>
+						<ul>
+							<li class="fragment">Caractéristiques des écrans des principaux terminaux mobiles :
+								<ul>
+									<li class="fragment">320x240, 240x320, 240x260</li>
+									<li class="fragment"><strong>iPhone 3 / 3GS</strong> : 320x480</li>
+									<li class="fragment"><strong>iPhone 4 / 4S</strong> : 640x960 (résolution x2 par rapport au 3GS)</li>
+								</ul>
+							</li>
+							<li class="fragment">et des tablettes :
+								<ul>
+									<li class="fragment"><strong>iPad 1 / 2</strong> : 768x1024 (132 ppp) - Ecran 9,7" (25cm)</li>
+									<li class="fragment"><strong>iPad 3</strong> : 1536x2048 (264 ppp) - Ecran 9,7" (25cm)</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Les Media Queries</h3>
+						<ul>
+							<li class="fragment">Pour cibler un terminal mobile particulier il faudra donc bien connaître ses caratéristiques :
+								<ul>
+									<li class="fragment"><strong>iPhone</strong> : device-width: 320px</li>
+									<li class="fragment"><strong>iPhone (Retina)</strong> : (device-width: 320px) and (-webkit-device-pixel-ratio: 2)</li>
+									<li class="fragment"><strong>iPad (paysage)</strong> : (device-width: 768px) and (orientation: landscape)</li>
+									<li class="fragment">...</li>
+								</ul>
+							</li>
+							<li class="fragment">Attention toutefois, ces règles ne sont quand même pas très fiables :
+								<ul>
+									<li class="fragment">Il se peut qu'un mobile (ou une tablette) dispose des mêmes caractéristiques qu'un autre</li>
+									<li class="fragment">Il ne faut donc pas trop typer son code pour une marque spécifique (sauf si c'est volontaire)</li>
+									<li class="fragment">Ou alors de préciser encore plus ces conditions en se tenant à jour des possibilités des derniers mobiles</li>
+								</ul>
+							</li>
+
+						</ul>
+					</section>
+
+					<section>
+						<h3>Les Media Queries</h3>
+						<p class="subtitle">Exemple : fix du splash screen (balise link)</p>
+
+<pre class="no-break"><code>&lt;!-- iPhone --&gt;
+&lt;link rel=&quot;apple-touch-startup-image&quot;
+      media=&quot;(device-width: 320px)&quot;
+      href=&quot;apple-touch-startup-image-320x460.png&quot;&gt;
+&lt;!-- iPhone (Retina) --&gt;
+&lt;link rel=&quot;apple-touch-startup-image&quot;
+      media=&quot;(device-width: 320px)
+         and (-webkit-device-pixel-ratio: 2)&quot;
+      href=&quot;apple-touch-startup-image-640x920.png&quot;&gt;
+
+&lt;!-- iPad (portrait) --&gt;
+&lt;link rel=&quot;apple-touch-startup-image&quot;
+      media=&quot;(device-width: 768px)
+         and (orientation: portrait)&quot;
+      href=&quot;apple-touch-startup-image-768x1004.png&quot;&gt;
+&lt;!-- iPad (landscape) --&gt;
+&lt;link rel=&quot;apple-touch-startup-image&quot;
+      media=&quot;(device-width: 768px)
+         and (orientation: landscape)&quot;
+      href=&quot;apple-touch-startup-image-748x1024.png&quot;&gt;
+
+...</code></pre>
+					</section>
+
+					<section>
+						<h3>Les Media Queries</h3>
+						<p class="subtitle">Exemple : chargement d'un CSS pour les terminaux Apple avec Retina Display</p>
+
+<pre class="no-break"><code>&lt;link rel=&quot;stylesheet&quot; media=&quot;only screen and -webkit-min-device-pixel-ratio: 2&quot; href=&quot;highres.css&quot;&gt;</code></pre>
+					</section>
+
+					<section>
+						<h3>Les media queries</h3>
+						<p class="subtitle">Exemple de conditions dans un fichier CSS</p>
+
+<pre class="no-break"><code>/* iPhone (portrait et paysage) */
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px)
+{
+	body { background-image : url('bkg-iphone.jpg'); }
+}
+
+/* iPhone (landscape) */
+
+@media only screen
+and (max-width : 320px)
+and (orientation : landscape)
+{
+	body { color: red; }
+}
+</code></pre>
+				<ul>
+					<li>L'exemple ci-dessus affichera :
+						<ul>
+							<li>Un fond d'écran spécifique pour l'iPhone</li>
+							<li>Une couleur de texte rouge si en plus c'est au format paysage</li>
+						</ul>
+					</li>
+				</ul>
+					</section>
+
+				</section>
+
+				<section>
+
+					<section>
+						<h2>Fonctionnalités HTML5</h2>
+						<img src="images/t3/html5-logo.jpeg" style="width: 100%;" />
+					</section>
+
+					<section>
+						<h3>Les Touch Events</h3>
+						<p class="fragment subtitle">Les événements DOM liés au tactile</p>
+						<ul>
+							<li class="fragment">Nouveaux événements introduits par Apple dans iOS 2.0...</li>
+							<li class="fragment">Puis implémentés sur Android...</li>
+							<li class="fragment">Puis repris par le W3C pour en établir les spécifications!</li>
+							<li class="fragment">Gobalement les équivalents aux "mouse events" sur les terminaux tactiles :
+							<ul>
+								<li class="fragment"><strong>touchstart</strong>: un doigt est <strong>placé</strong> sur l'écran</li>
+								<li class="fragment"><strong>touchmove</strong> : un doigt est <strong>déplacé</strong> sur l'écran</li>
+								<li class="fragment"><strong>touchend</strong> : un doigt est <strong>enlevé</strong> sur l'écran</li>
+							</ul>
+							</li>
+							<li class="fragment italic">Certains frameworks en implémentent d'autres (tap, doubletap, drag, pinch, ...) en codant la logique</li>
+
+						</ul>
+					</section>
+
+					<section>
+						<h3>Les Touch Events</h3>
+						<p class="subtitle">Exemple</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
+function init(){
+
+     var myObject = document.getElementById(&quot;myObject&quot;);
+     myObject.addEventListener('touchstart', function(e) {
+	alert('Un doigt est pos&eacute; !');
+     }, false);
+
+     myObject.addEventListener('touchend', function(e) {
+	alert('Ah ben non il est levé...');
+     }, false);
+}
+&lt;/script&gt;</code></pre>
+					</section>
+
+					<section>
+						<h3>Les Gesture Events</h3>
+						<p class="fragment subtitle">La même chose mais avec deux doigts !</p>
+						<ul>
+							<li class="fragment"><strong>gesturestart</strong>: au moins deux doigts <strong>touchent</strong> l'écran</li>
+							<li class="fragment"><strong>gesturechange</strong> : au moins deux doigts <strong>bougent</strong> sur l'écran</li>
+							<li class="fragment"><strong>gestureend</strong> : au moins deux doigts <strong>quittent</strong> l'écran</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Les Gesture Events</h3>
+						<p class="subtitle">Exemple</p>
+<pre class="no-break"><code>&lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;
+function init() {
+
+	var myObject = document.getElementById(&quot;myObject&quot;);
+
+	myObject.addEventListener('gesturestart', function(e) {
+		alert(&quot;Zoom de d&eacute;part: &quot; + e.scale);
+		alert(&quot;Rotation de d&eacute;part: &quot; + e.rotation);
+	}, false);
+
+	myObject.addEventListener('gesturechange', function(e) {
+		alert(&quot;Zoom chang&eacute; pour: &quot; + e.scale);
+		alert(&quot;Rotation chang&eacute;e pour: &quot; + e.rotation);
+	}, false);
+
+	myObject.addEventListener('gestureend', function(e) {
+		alert(&quot;Zoom de fin: &quot; + e.scale);
+		alert(&quot;Rotation de fin: &quot; + e.rotation);
+	}, false);
+
+}
+&lt;/script&gt;</code></pre>
+					</section>
+
+					<section>
+						<h3>Le cache d'application</h3>
+						<ul>
+							<li>Permet d'utiliser une application web sans connexion Internet</li>
+							<li>Permet d'améliorer la vitesse de chargement des pages puisque les fichiers sont stockés localement</li>
+							<li>Permet de réduire la charge serveur, les fichiers n'étant téléchargés que s'ils ont été modifiés</li>
+							<li>Ce cache est limité à 5M !</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Le cache d'application</h3>
+						<p class="subtitle">Le cache d'application sous Chrome</p>
+						<img src="images/t3/Chrome-AppCache[2].png" />
+					</section>
+
+					<section>
+						<h3>Géolocalisation</h3>
+						<img src="images/t3/20100319-iphonegeoloc.jpeg" />
+					</section>
+
+					<section>
+						<h3>Géolocalisation</h3>
+						<p class="subtitle">Comment ça marche ?</p>
+
+<pre><code>navigator.geolocation.getCurrentPosition(function(position) {
+	var infopos = &quot;Position d&eacute;tect&eacute;e :\n&quot;;
+	infopos += &quot;Latitude : &quot;+position.coords.latitude +&quot;\n&quot;;
+	infopos += &quot;Longitude: &quot;+position.coords.longitude+&quot;\n&quot;;
+	infopos += &quot;Altitude : &quot;+position.coords.altitude +&quot;\n&quot;;
+
+	alert(&quot;Voil&agrave; ma position : &quot; + infopos;
+});</code></pre>
+
+					<ul>
+						<li>Un simple appel à l'API HTML5 !</li>
+						<li>Peu permettre beaucoup de choses en lien avec une base de données</li>
+						<li>Permet de dynamiser les applications et de les rendre plus pertinentes pour l'utilisateur</li>
+					</ul>
+
+					</section>
+
+					<section>
+						<h3>Vidéos</h3>
+						<p class="subtitle">Simple comme choux</p>
+
+<pre><code>&lt;video width=&quot;320&quot; height=&quot;240&quot; controls=&quot;controls&quot;&gt;
+  &lt;source src=&quot;video.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  &lt;source src=&quot;video.webm&quot; type=&quot;video/webm&quot; /&gt;
+  &lt;source src=&quot;video.ogv&quot; type=&quot;video/ogg&quot; /&gt;
+  Ici l'alternative &agrave; la vid&eacute;o : un lien de t&eacute;l&eacute;chargement, un message, etc.
+&lt;/video&gt;</code></pre>
+						<ul>
+							<li>Plus besoin de lecteur Flash pour lire les vidéos</li>
+							<li>Le mode plein écran et la lecteur sont gérés directement par le terminal</li>
+							<li>Le format des vidéo n'a pas encore été validé par le W3C, il faut donc composer avec les différents formats supportés par les navigateurs (WebM, MP4 et Ogg Theora)</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Les éléments de formulaires</h3>
+						<ul>
+							<li>Avec HTML5 de nouveaux types de champs formulaires ont fait leur apparition</li>
+							<li>Certains sont très bien interprétés par les mobiles et améliorent grandement l'ergonomie</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Les éléments de formulaires</h3>
+						<p class="subtitle">Champs spécifiques</p>
+						<pre><code>&lt;input type=&quot;email&quot; name=&quot;e&quot; /&gt;</code></pre>
+						<pre><code>&lt;input type=&quot;number&quot; name=&quot;n&quot; /&gt;</code></pre>
+						<pre><code>&lt;input type=&quot;tel&quot; name=&quot;t&quot; /&gt;</code></pre>
+
+						<img src="images/t3/inputs/html5-type-email-iphone.png" />
+						<img src="images/t3/inputs/html5-type-number-iphone.png" />
+						<img src="images/t3/inputs/html5-type-tel-iphone.png" />
+
+					</section>
+
+					<section>
+						<h3>Les éléments de formulaires</h3>
+						<ul>
+							<li>Il existe encore plein d'autres types que vous pouvez utiliser pour améliorer l'expérience utilisateur :
+							<ul>
+								<li>placeholder</li>
+								<li>autofocus</li>
+								<li>url</li>
+								<li>date</li>
+								<li>datetime</li>
+								<li>month</li>
+								<li>week</li>
+								<li>time</li>
+								<li>color</li>
+								<li>search</li>
+								<li>range</li>
+							</ul>
+							</li>
+						</ul>
+
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h2>Les bonnes pratiques</h2>
+						<img src="images/t3/homepage-design-best-practices.jpg" />
+					</section>
+
+					<section>
+						<h3>Les bonnes pratiques</h3>
+						<p class="subtitle">Graphiques et ergonomiques</p>
+						<ul>
+							<li class="fragment">Baser son interface sur les terminaux avec la plus haute résolution disponible </li>
+							<li class="fragment">Si possible utiliser des images vectorielles (SVG)</li>
+							<li class="fragment">Storyboarder ses applications
+								<ul>
+									<li class="fragment">Positionnement des éléments nécessaires</li>
+									<li class="fragment">Comportement en mode portrait et paysage</li>
+									<li class="fragment">Animations et transitions</li>
+									<li class="fragment">...</li>
+								</ul>
+							</li>
+							<li class="fragment">Utiliser les possibilités offertes par CSS</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Les bonnes pratiques</h3>
+						<p class="subtitle">Techniques</p>
+						<ul>
+							<li class="fragment">Penser en terme de performances, codez léger !</li>
+							<li class="fragment">Limiter le nombre et le poids des fichiers chargés</li>
+							<li class="fragment">Utiliser des techniques I/O non bloquantes (Ajax, Workers, ...)</li>
+							<li class="fragment">Utiliser les possiblité de cache du HTML5 (manifest, application cache, ...)</li>
+							<li class="fragment">Suivre les bonnes pratiques générales de performances des sites Internet (compression des fichiers, nombre de requêtes, ...)</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Les bonnes pratiques</h3>
+						<p class="subtitle">Les Frameworks</p>
+						<ul>
+							<li class="fragment">Il existe plusieurs Frameworks pour créer des web apps HTML5, c'est quand même utile :
+								<ul>
+									<li class="fragment">Pour ne pas réinventer la roue</li>
+									<li class="fragment">Pour des questions de coût / temps</li>
+									<li class="fragment">Parcequ'ils se chargent de la compatibilité entre les terminaux</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Les bonnes pratiques</h3>
+						<p class="subtitle">Les Frameworks</p>
+						<ul>
+							<li class="fragment">Voici une liste non exhaustive :
+							<ul>
+								<li class="fragment"><strong>jQuery mobile</strong> : basé sur le framework javascript jQuery et compatible avec la majorité des terminaux / OS</li>
+								<li class="fragment"><strong>Sencha Touch</strong> : framework très complet avec des possibilité de passage en natif</li>
+								<li class="fragment"><strong>Titanium</strong> : convertisseur de code Javascript vers Java (Android) ou Objective-C (iPhone)</li>
+								<li class="fragment"><strong>PhoneGap</strong> : encapsuleur de Web App (HTML / CSS) dans une application native</li>
+							</ul>
+							</li>
+							<li class="fragment">Je vous laisse le soin de les découvrir</li>
+						</ul>
+					</section>
+
+				</section>
+
+				<section>
+
+
+
+				</section>
+
+				<section>
+
+					<section>
+						<h2>Etude de cas</h2>
+						<p class="subtitle">Riviera Villages</p>
+						<ul>
+							<li>Camping de luxe à Port-Grimaud (VAR)</li>
+							<li>Site web redéveloppé fin 2010</li>
+							<li>Création d'une Web App en 2011 pour présenter les villages
+								<ul>
+									<li>Utilisation de jQuery mobile</li>
+									<li>Optimisé mobile et tablettes (iOS et Android)</li>
+								</ul>
+							</li>
+							<li>Création d'une Web App iPad en 2012
+								<ul>
+									<li>Borne d'information client à la réception</li>
+									<li>Utilisation de Sencha Touch</li>
+									<li>Optimisé iPhone et iPad</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Etude de cas</h2>
+						<p class="subtitle">Présentation du site</p>
+						<img src="images/t3/riviera.png" />
+						<p><a href="http://www.riviera-villages.com/" target="_blank">http://www.riviera-villages.com</a></p>
+					</section>
+
+					<section>
+						<h2>Etude de cas</h2>
+						<p class="subtitle">Les problématiques de la Web App mobile</p>
+						<ul>
+							<li>Design du site Internet non adapté aux mobiles</li>
+							<li>Il fallait présenter uniquement ce que les gens veulent voir
+								<ul>
+									<li>Les villages</li>
+									<li>Les hébergements</li>
+									<li>Des photos !</li>
+								</ul>
+							</li>
+							<li>Utiliser la base de données actuelle du site</li>
+							<li>Pouvoir faire une pré-réservation directement sur le mobile</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Etude de cas</h2>
+						<p class="subtitle">Demonstration</p>
+					</section>
+
+					<section>
+						<h2>Etude de cas</h2>
+						<p class="subtitle">Les problématiques de la Web App iPad</p>
+						<ul>
+							<li>Permettre aux vacanciers de voir les animations du moment sur le village</li>
+							<li>Utiliser la base de données actuelle du site</li>
+							<li>Gérer des temps d'accès rapide et un téléchargement automatique des mises à jour</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Etude de cas</h2>
+						<p class="subtitle">Une mise en situation sur site !</p>
+						<img src="images/t3/riviera_kiosk.jpeg" style="height: 100%;" />
+					</section>
+
+				</section>
+
+				<section>
+
+					<section>
+						<h2>Conclusion</h2>
+						<p class="subtitle">Le web mobile, avenir du web ?</p>
+						<ul>
+							<li class="fragment">Le marché du mobile et des applications web est florissant</li>
+							<li class="fragment">Les versions adaptées pour mobile des sites Internet vont se démocratiser jusqu'à devenir un pré-requis au développement</li>
+							<li class="fragment">De plus en plus de personnes seront connectées en dehors de leur ordinateur fixe (développement des mobiles 4G)</li>
+							<li class="fragment">Les terminaux mobiles seront de plus en plus puissants et disposeront de plus en plus de fonctionnalités</li>
+							<li class="fragment">Le web mobile viendra compléter l'utilisation fixe que l'on connaît (synchronisation des données, ...)</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Des questions ?</h2>
+					</section>
+
+				</section>

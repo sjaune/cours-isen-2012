@@ -1,0 +1,1221 @@
+	<section>
+		<h1>Intégration<br />HTML / CSS</h1>
+		<p>ISEN - CIR1 - 2012/2013</p>
+		<p style="margin-top: 60px; font-size: 36px;"><strong>Sylvain Jaune</strong></p>
+		<p>sjaune@gmail.com</p>
+		<p>www.sylvain-jaune.com</p>
+	</section>
+
+	<section>
+		<h2>Sommaire</h2>
+		<ol>
+			<li><strong>Partie 1 : HTML</strong>
+				<ul>
+					<li>Définition</li>
+					<li>Notions de base</li>
+					<li>La sémantique</li>
+					<li>La structure du code</li>
+				</ul>
+			</li>
+			<li><strong>Partie 2 : CSS</strong>
+				<ul>
+					<li>Définition</li>
+					<li>Notions de base</li>
+					<li>Les fichiers reset</li>
+					<li>Le positionnement des blocs</li>
+					<li>La stylisation du document</li>
+				</ul>
+			</li>
+		</ol>
+	</section>
+
+	<section>
+
+		<section>
+			<h2>HTML</h2>
+		</section>
+
+		<section>
+			<h3>Définition</h3>
+			<p><strong>HTML : Hypertext Markup Language</strong></p>
+			<ul>
+				<li>HTML est un langage hypertexte (hyperliens dans du texte)</li>
+				<li>C'est un langage à balises (tags)</li>
+				<li>Les balises servent à décrire le contenu</li>
+				<li>Document HTML = Page web</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Définition</h3>
+			<p class="subtitle">Historique des versions de HTML</p>
+			<table>
+				<tbody>
+				<tr>
+					<th>Version</th>
+					<th>Année</th>
+				</tr>
+				<tr>
+					<td>HTML</td>
+					<td>1991</td>
+				</tr>
+				<tr>
+					<td>HTML+</td>
+					<td>1993</td>
+				</tr>
+				<tr>
+					<td>HTML 2.0</td>
+					<td>1995</td>
+				</tr>
+				<tr>
+					<td>HTML 3.2</td>
+					<td>1997</td>
+				</tr>
+				<tr>
+					<td>HTML 4.01</td>
+					<td>1999</td>
+				</tr>
+				<tr>
+					<td>XHTML 1.0</td>
+					<td>2000</td>
+				</tr>
+				<tr class="red">
+					<td>HTML5</td>
+					<td>2012</td>
+				</tr>
+			<tr>
+					<td>XHTML5</td>
+					<td>2013</td>
+				</tr>
+
+			</tbody></table>
+		</section>
+	</section>
+
+	<section>
+
+		<section>
+			<h2>Notions de base</h2>
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">Les balises</p>
+			<ul>
+				<li>Les balises HTML sont des mots-clés entourés d'équerres (ex. <span class="ttag">&lt;html&gt;</span>)</li>
+				<li>Les balises HTML vont normalement par paire (ex. <span class="ttag">&lt;b&gt;</span> et <span class="ttag">&lt;/b&gt;</span>)</li>
+				<li>La première balise est celle d'<strong>ouverture</strong> et la deuxième celle de <strong>fermeture</strong></li>
+				<li>La balise de fermeture s'écrit comme une balise d'ouverture mais avec une <strong>barre oblique</strong> (slash) devant (ex. <span class="ttag">&lt;/body&gt;</span>)</li>
+				<li>
+					Un <strong>élement HTML</strong> est constitué de ce qui se trouve entre deux balises :
+					<pre><code>&lt;balise&gt;Contenu&lt;/balise&gt;</code></pre>
+				</li>
+				<li>Le rôle d'un navigateur Internet (Chrome, Internet Explorer, Firefox, ...) est de lire le code des documents HTML et de les afficher en tant que page web
+			</ul>
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">Les balises</p>
+			<p>L'imbrication des balises est possible :</p>
+			<pre><code>&lt;div&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Texte 1&lt;/li&gt;
+        &lt;li&gt;Texte 2&lt;/li&gt;
+        &lt;li&gt;Texte 3&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+			<ul>
+				<li>On peut imbriquer les balises à l'infini, il faut juste penser à bien fermer toutes les balises dans l'ordre</li>
+				<li>Chacune des balises HTML à cependant des restrictions sur les éléments qu'elle peut contenir</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">L'héritage</p>
+			<p>On parle d'héritage lorsqu'il y a imbrication (sur un ou plusieurs niveaux) de balises</p>
+			<pre><code>&lt;div&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Texte 1&lt;/li&gt;
+        &lt;li&gt;Texte 2&lt;/li&gt;
+        &lt;li&gt;Texte 3&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+			<ul>
+				<li><span class="ttag">&lt;div&gt;</span> est un <strong>parent</strong> de <span class="ttag">&lt;ul&gt;</span></li>
+				<li><span class="ttag">&lt;div&gt;</span> est un <strong>ancêtre</strong> des <span class="ttag">&lt;li&gt;</span></li>
+				<li><span class="ttag">&lt;ul&gt;</span> est l'<strong>enfant</strong> de <span class="ttag">&lt;div&gt;</span></li>
+				<li><span class="ttag">&lt;ul&gt;</span> est le <strong>parent</strong> des <span class="ttag">&lt;li&gt;</span></li>
+				<li>les <span class="ttag">&lt;li&gt;</span> sont les <strong>enfants</strong> du <span class="ttag">&lt;ul&gt;</span></li>
+				<li>les <span class="ttag">&lt;li&gt;</span> sont les <strong>descendants</strong> du <span class="ttag">&lt;div&gt;</span></li>
+			</ul>
+
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">Les balises block (en bloc)</p>
+			<ul>
+				<li><span class="ttag">&lt;p&gt;</span>, <span class="ttag">&lt;div&gt;</span>, <span class="ttag">&lt;h1&gt;</span>, <span class="ttag">&lt;ul&gt;</span>, ..., sont des balises <strong>block</strong></li>
+				<li>Ces balises se comportent comme un rectangle qui prend toute la largeur et la hauteur du texte qu'elles contiennent</li>
+				<li>Elle peuvent imbriquer des balises <strong>inline</strong> et certaines autres balises <strong>block</strong></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">Les balises block (en bloc)</p>
+			<img src="images/t1/display-block.png" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">Les balises inline (en ligne)</p>
+			<ul>
+				<li><span class="ttag">&lt;a&gt;</span>, <span class="ttag">&lt;span&gt;</span>, <span class="ttag">&lt;em&gt;</span>, <span class="ttag">&lt;strong&gt;</span>, ..., sont des balises <strong>inline</strong></li>
+				<li>Ces balises permettent de différencier une partie du texte</li>
+				<li>Elle ne se comportent pas comme des rectangles, elles s'affichent les une à la suite des autres</li>
+				<li>Elle peuvent imbriquer d'autres balises <strong>inline</strong> mais pas de balises <strong>block</strong></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">Les balises inline (en ligne)</p>
+			<p>Un exemple de code incorrect</p>
+<pre><code>&lt;span&gt;
+	&lt;p&gt;Paragraphe 1&lt;/p&gt;
+	&lt;p&gt;Paragraphe 2&lt;/p&gt;
+&lt;/span&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">Les balises inline (en ligne)</p>
+			<img src="images/t1/display-inline.png" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">Le Doctype</p>
+			<ul>
+				<li>Un navigateur Internet de peut pas correctement afficher une page web s'il ne connaît pas le type HTML et la version utilisée (doctype)</li>
+				<li>Il faut donc le déclarer en entête de document avant toute balise</li>
+			</ul>
+		</section>
+
+		<section>
+
+			<h3>Notions de base</h3>
+			<p class="subtitle">Le Doctype</p>
+
+			<p>XHTML 1.0</p>
+<pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
+&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</code></pre>
+
+			<p>HTML 4.01</p>
+			<pre><code>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;
+&quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</code></pre>
+
+			<p>HTML5</p>
+			<pre><code>&lt;!DOCTYPE html&gt;</code></pre>
+
+		</section>
+
+	</section>
+
+	<section>
+
+		<section>
+			<h2>La sémantique</h2>
+			<img src="images/t1/mrpropre.jpeg" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>La sémantique</h3>
+			<p class="subtitle fragment">Késako ?</p>
+			<ul>
+				<li>L'idée générale est que toutes les balises ont un <strong>sens</strong></li>
+				<li>Vous avez peut être noté que le nom de la balise renvoie directement à une abbréviation :
+					<ul>
+						<li><span class="ttag">&lt;p&gt;</span> pour un paragraphe (<strong>p</strong>aragraph)</li>
+						<li><span class="ttag">&lt;h1&gt;</span> pour un titre de premier niveau (<strong>h</strong>eading <strong>1</strong>)</li>
+						<li><span class="ttag">&lt;h2&gt;</span> pour un titre de deuxième niveau (<strong>h</strong>eading <strong>2</strong>)</li>
+						<li><span class="ttag">&lt;ul&gt;</span> pour une liste non ordonnée (<strong>u</strong>nordered <strong>l</strong>ist)</li>
+						<li><span class="ttag">&lt;a&gt;</span> pour un lien (<strong>a</strong>nchor)</li>
+						<li>etc.</li>
+					</ul>
+				</li>
+				<li>Le but du jeu est donc d'utiliser <strong>la bonne balise</strong>, <strong>au bon endroit</strong>, <strong>au bon moment</strong></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>La sémantique</h3>
+			<p class="subtitle fragment">Exceptions</p>
+			<ul>
+				<li>Deux balises sont utilisées en HTML mais n'ont pas d'intérêt sémantique (de sens) :
+					<ul>
+						<li>la balise <span class="ttag">&lt;div&gt;</span> (block) pour créer une division et regrouper des blocs entre eux</li>
+						<li>la balise <span class="ttag">&lt;span&gt;</span> (inline) pour différencier et agrémenter des mots</li>
+					</ul>
+				</li>
+				<li>Ces balises donnent <strong>du style mais pas du sens</strong></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>La sémantique</h3>
+			<p class="subtitle fragment">Quel est l'intérêt ?</p>
+			<ul>
+				<li>Déjà un aspect hautement qualitatif :
+					<ul>
+						<li>On emploie les balises pour leur vocation initiale (c'est le W3C qui va être content !)</li>
+						<li>On garantit une compatibilité et un bon rendu sur les navigateurs (meilleure analyse du code)</li>
+					</ul>
+				</li>
+				<li>Pour les moteurs de recherche :
+					<ul>
+						<li>Google préfère qu'on lui serve une page bien composée pour son indexation</li>
+						<li>Ca ne fait donc pas de mal au référencement de son site dans les moteurs !</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>La sémantique</h3>
+			<p class="subtitle">Quel est l'intérêt ?</p>
+			<ul>
+				<li>Pour l'accessibilité aux personnes handicapées :
+					<ul>
+						<li>Celles-ci utilisent généralement une aide à la lecture de page HTML (comme pour les non-voyants par exemple)</li>
+						<li>Les lecteurs et matériels pour handicapés interprètent mieux un code respectant la sémantique</li>
+					</ul>
+				</li>
+				<li>Sinon pour l'internaute lambda :
+					<ul>
+						<li>Globalement aucune différence !</li>
+						<li>On peut avoir le même rendu visuel de la page avec une mauvaise utilisation des balises qu'en les utilisant correctement</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+	</section>
+
+	<section>
+		<section>
+			<h2>La structuration du code</h2>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Le squelette HTML, la base !</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;meta charset=&quot;utf-8&quot;&gt;
+		&lt;title&gt;Mon squelette HTML&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+
+		&lt;!-- Le corps de ma page ici --&gt;
+
+	&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<ul>
+	<li>Pour l'exemple nous partirons sur un doctype HTML5 (plus simple)</li>
+	<li>On part du minimum syndical :
+		<ul>
+			<li>La balise racine <span class="ttag">&lt;html&gt;</span> qui contient toutes les autres</li>
+			<li>La balise d'entête <span class="ttag">&lt;head&gt;</span> qui contient les méta-données non visibles</li>
+			<li>La balise du corps de page <span class="ttag">&lt;body&gt;</span> visible</li>
+		</ul>
+	</li>
+	<li>A cette étape là on ne parle pas encore de mise en forme</li>
+</ul>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<ul>
+				<li>Nous allons voir maintenant comment intégrer de façon sémantique un texte (ou une maquette graphique) qui nous est fourni(e)</li>
+				<li>Il va falloir identifier et hierarchiser l'information pour pouvoir la baliser correctement</li>
+				<li>Voici un extrait de texte issu de notre blog</li>
+			</ul>
+			<p></p>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Extrait de texte</p>
+			<pre style="box-shadow: none !important;">
+La quête de sens en entreprise
+
+Les récentes statistiques du blog montrent qu’il est la destination privilégiée de toutes les personnes recherchant une définition de liberté d’entreprise.
+« Définition de la liberté d’entreprendre » est en effet la requête la plus courante depuis plus de deux ans en moyenne.
+...
+
+Sens et plaisir dans la vie professionnelle
+
+En amont de la création de Metycea, je me souviens avoir arpenté les couloirs du salon de la création d’entreprise en 2006.
+J’avais été en résonance avec deux interventions : celle de Jean-Michel BILLAUT qui parlait de l’internet et des nouvelles technologies comme d’un vaste territoire de jeu et de plaisir. Et celle de l’organisateur du salon qui avait focalisé sa présentation sur le bonheur d’entreprendre.
+...
+
+Quid de la vision des entrepreneurs qui ont réussi
+
+Définir son sens dans l’entreprise n’est pas chose aisée. Sans doute parce qu’il n’est pas très utile de chercher le sens dans le seul monde professionnel.
+Orientation qualité, satisfaction client, croissance du chiffre d’affaires sont sans doute des objectifs à sens pour une entreprise…ce sont surtout soit des moyens, soit des résultantes d’une démarche sensée.
+...
+			</pre>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<pre style="box-shadow: none !important;">
+<span style="font-style: italic; color: black; font-weight: bold;">- Nous avons identifié un titre de niveau 1 (principal)</span>
+<span style="color: red;">La quête de sens en entreprise</span>
+
+<span style="font-style: italic; color: black; font-weight: bold;">- Un paragraphe</span>
+<span style="font-style: italic; color: blue;">Les récentes statistiques du blog montrent qu’il est la destination privilégiée de toutes les personnes recherchant une définition de liberté d’entreprise.</span>
+...
+
+<span style="font-style: italic; color: black; font-weight: bold;">- Ici un titre de niveau 2</span>
+<span style="color: green;">Sens et plaisir dans la vie professionnelle</span>
+
+<span style="font-style: italic; color: black; font-weight: bold;">- Un autre paragraphe</span>
+<span style="font-style: italic; color: blue;">En amont de la création de Metycea, je me souviens avoir arpenté les couloirs du salon de la création d’entreprise en 2006.</span>
+...
+
+<span style="font-style: italic; color: black; font-weight: bold;">- Ici aussi un titre de niveau 2</span>
+<span style="color: green;">Quid de la vision des entrepreneurs qui ont réussi</span>
+
+<span style="font-style: italic; color: black; font-weight: bold;">- Un dernier paragraphe</span>
+<span style="font-style: italic; color: blue;">Définir son sens dans l’entreprise n’est pas chose aisée. Sans doute parce qu’il n’est pas très utile de chercher le sens dans le seul monde professionnel.</span>
+...
+			</pre>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p>Ajoutons-y quelques mots importants en gras et d'autres sur lesquels on aura mis l'accent</p>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Transcription HTML</p>
+<pre class="no-break"><code>&lt;h1&gt;La qu&ecirc;te de sens en entreprise&lt;/h1&gt;
+&lt;p&gt;Les r&eacute;centes statistiques du blog montrent qu&#8217;il est la destination privil&eacute;gi&eacute;e de toutes les personnes recherchant une d&eacute;finition de &lt;strong&gt;libert&eacute; d&#8217;entreprise&lt;/strong&gt;.&lt;br&gt;
+&lt;em&gt;&#171; D&eacute;finition de la libert&eacute; d&#8217;entreprendre &#187;&lt;/em&gt; est en effet la requ&ecirc;te la plus courante depuis plus de deux ans en moyenne.&lt;/p&gt;
+...
+
+&lt;h2&gt;Sens et plaisir dans la vie professionnelle&lt;/h2&gt;
+&lt;p&gt;En amont de la cr&eacute;ation de &lt;a href=&quot;http://www.metycea.com&quot;&gt;Metycea&lt;/a&gt;, je me souviens avoir arpent&eacute; les couloirs du salon de la cr&eacute;ation d&#8217;entreprise en 2006.&lt;br&gt;
+J&#8217;avais &eacute;t&eacute; en r&eacute;sonance avec deux interventions : celle de &lt;strong&gt;Jean-Michel BILLAUT&lt;/strong&gt; qui parlait de l&#8217;internet et des nouvelles technologies comme d&#8217;un vaste territoire de jeu et de plaisir. Et celle de l&#8217;organisateur du salon qui avait focalis&eacute; sa pr&eacute;sentation sur le &lt;strong&gt;bonheur d&#8217;entreprendre&lt;/strong&gt;.&lt;/p&gt;
+...
+
+&lt;h2&gt;Quid de la vision des entrepreneurs qui ont r&eacute;ussi&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;D&eacute;finir son sens dans l&#8217;entreprise n&#8217;est pas chose ais&eacute;e&lt;/em&gt;. Sans doute parce qu&#8217;il n&#8217;est pas tr&egrave;s utile de chercher le sens dans le seul monde professionnel.&lt;br&gt;
+Orientation qualit&eacute;, satisfaction client, croissance du chiffre d&#8217;affaires sont sans doute des objectifs &agrave; sens pour une entreprise&#8230;ce sont surtout soit des moyens, soit des r&eacute;sultantes d&#8217;une d&eacute;marche sens&eacute;e.&lt;/p&gt;
+...</code></pre>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Les balises d'entête</p>
+			<ul>
+				<li>Quelques règles concernant les balises d'entête (H1, H2, ...)</li>
+				<li>Il ne doit y avoir qu'un seul titre principal (H1) par document HTML</li>
+				<li>Ces balises doivent s'imbriquer dans un ordre logique (une balise H2 sous une H1, une H3 sous une H2, ..)</li>
+				<li>Ce sont des balises de type <strong>block</strong> donc que du <strong>inline</strong> à l'intérieur</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Les balises d'entête</p>
+			<p>Exemple de code incorrect (il manque un niveau h2):</p>
+<pre class="no-break"><code>&lt;h1&gt;La qu&ecirc;te de sens en entreprise&lt;/h1&gt;
+&lt;p&gt;Les récentes statistiques du blog montrent qu&#8217;il est la destination privil&eacute;gi&eacute;e de toutes les personnes recherchant une d&eacute;finition de libert&eacute; d&#8217;entreprise.&lt;br&gt;
+&#171; D&eacute;finition de la libert&eacute; d&#8217;entreprendre &#187; est en effet la requ&ecirc;te la plus courante depuis plus de deux ans en moyenne.&lt;/p&gt;
+...
+
+&lt;h3&gt;Sens et plaisir dans la vie professionnelle&lt;/h3&gt;
+&lt;p&gt;En amont de la cr&eacute;ation de Metycea, je me souviens avoir arpent&eacute; les couloirs du salon de la cr&eacute;ation d&#8217;entreprise en 2006.&lt;br&gt;
+J&#8217;avais &eacute;t&eacute; en r&eacute;sonance avec deux interventions : celle de Jean-Michel BILLAUT qui parlait de l&#8217;internet et des nouvelles technologies comme d&#8217;un vaste territoire de jeu et de plaisir. Et celle de l&#8217;organisateur du salon qui avait focalis&eacute; sa pr&eacute;sentation sur le bonheur d&#8217;entreprendre.&lt;/p&gt;
+...
+
+&lt;h3&gt;Quid de la vision des entrepreneurs qui ont r&eacute;ussi&lt;/h3&gt;
+&lt;p&gt;D&eacute;finir son sens dans l&#8217;entreprise n&#8217;est pas chose ais&eacute;e. Sans doute parce qu&#8217;il n&#8217;est pas tr&egrave;s utile de chercher le sens dans le seul monde professionnel.&lt;br&gt;
+Orientation qualit&eacute;, satisfaction client, croissance du chiffre d&#8217;affaires sont sans doute des objectifs &agrave; sens pour une entreprise&#8230;ce sont surtout soit des moyens, soit des r&eacute;sultantes d&#8217;une d&eacute;marche sens&eacute;e.&lt;/p&gt;
+...</code></pre>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Les balises d'entête</p>
+			<p>On peux imbriquer les balises directement les unes en dessous des autres :</p>
+<pre><code>&lt;h1&gt;Mon titre principal&lt;/h1&gt;
+&lt;h2&gt;Titre de niveau 2&lt;/h2&gt;
+&lt;h3&gt;Titre de niveau 3&lt;/h3&gt;
+&lt;p&gt;Le texte de mon paragraphe&lt;/p&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Revenons à notre code HTML</p>
+			<ul>
+				<li>Voici le résultat généré et interprété par le navigateur</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Résultat du code généré</p>
+			<iframe src="cours/t1/1.html"></iframe>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Résultat du code généré</p>
+			<ul>
+				<li>Vous noterez que le navigateur applique par défaut des styles aux balises</li>
+				<li>Chaque navigateur incorpore une feuille de style par défaut (qui diffère légèrement d'un navigateur à l'autre)</li>
+				<li>On y revient plus tard ...</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Ajout d'éléments HTML</p>
+			<ul>
+				<li>Maintenant que nous avons positionné le contenu principal de notre page web, ajoutons d'autres éléments d'un site web , par exemple :
+					<ul>
+						<li><strong>Un menu principal</strong> : les grandes rubriques du site</li>
+						<li><strong>Une barre de navigation secondaire</strong> : liste les articles sur le même thème</li>
+						<li><strong>Un pied de page</strong> : le nom du créateur et l'année de création</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Priorisation des éléments HTML</p>
+			<ul>
+				<li>Nous allons maintenant les positionner dans le code par ordre de priorité</li>
+				<li>Pour cela nous allons définir leur rapport avec le sujet de la page web :
+					<ol>
+						<li><strong>Le texte principal</strong> : contenu principal, à afficher en premier</li>
+						<li><strong>La barre de navigation</strong> : en rapport direct avec le contenu actuel</li>
+						<li><strong>Le menu</strong> : plus généralistes, moins en rapport</li>
+						<li><strong>Le pied de page</strong> : peu d'importance au niveau du contenu</li>
+					</ol>
+				</li>
+				<li>Pour l'instant peu importe l'affichage visuel définitif, on structure encore le code</li>
+				<li>Donc toujours pas de CSS !</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Elements à positionner</p>
+			<p>Le menu principal</p>
+<pre><code>&lt;h2&gt;Menu principal&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;/&quot;&gt;Accueil&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;/rubrique1/&quot;&gt;Rubrique 1&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;/rubrique2/&quot;&gt;Rubrique 2&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;/rubrique3/&quot;&gt;Rubrique 3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Elements à positionner</p>
+			<p>La barre de navigation</p>
+<pre><code>&lt;h2&gt;Articles de la m&ecirc;me cat&eacute;gorie&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;article1.html&quot;&gt;Article 1&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;article2.html&quot;&gt;Article 2&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;article3.html&quot;&gt;Article 3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Elements à positionner</p>
+			<p>Le pied de page</p>
+<pre><code>&lt;h2&gt;Auteur&lt;/h2&gt;
+&lt;p&gt;
+	&lt;strong&gt;Sylvain JAUNE&lt;/strong&gt; - Ann&eacute;e 2012
+&lt;/p&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Résultat du code généré</p>
+			<iframe src="cours/t1/2.html"></iframe>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Séparation des blocs de contenu</p>
+			<ul>
+				<li>Séparons les blocs pour y voir plus clair :
+					<ul>
+						<li>A l'aide de la balise <span class="ttag">&lt;hr&gt;</span> (<strong>h</strong>orizontal <strong>r</strong>ule)</li>
+						<li>Cette balise sert de séparateur et marque un changement notable dans le contenu</li>
+					</ul>
+				</li>
+				<li>On ajoute cette balise à la fin de chacun de nos blocs (menu, barre de navigation, ...)
+			</ul>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Résultat du code généré</p>
+			<iframe src="cours/t1/3.html"></iframe>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Avec la balise hr</p>
+			<pre><code>&lt;h2&gt;Articles de la m&ecirc;me cat&eacute;gorie&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;article1.html&quot;&gt;Article 1&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;article2.html&quot;&gt;Article 2&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;article3.html&quot;&gt;Article 3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+&lt;h2&gt;Menu principal&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;/&quot;&gt;Accueil&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;/rubrique1/&quot;&gt;Rubrique 1&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;/rubrique2/&quot;&gt;Rubrique 2&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;/rubrique3/&quot;&gt;Rubrique 3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;</code></pre>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Résultat du code généré</p>
+			<iframe src="cours/t1/3.html"></iframe>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Ajout de conteneurs</p>
+			<ul>
+				<li>Nous allons maintenant définir les conteneurs pour ces blocs, qui serviront cette fois-ci au positionnement graphique
+					<ul>
+						<li>Pour cela nous utilisons des balises <span class="ttag">&lt;div&gt;</span></li>
+						<li>Ces balises vont être imbriquées pour voir apparaître un nouveau découpage de zones</li>
+						<li>Nous allons nommer chacune de ces zones avec l'attribut <strong>id</strong> (un id est unique par document HTML)</li>
+						<li>Un conteneur principal contient tous les autres</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>La structuration du code</h3>
+			<p class="subtitle">Notre code structuré</p>
+
+			<pre><code>&lt;body&gt;
+	&lt;div id=&quot;conteneur&quot;&gt;
+		&lt;div id=&quot;article&quot;&gt;
+			&lt;h1&gt;La qu&ecirc;te de sens en entreprise&lt;/h1&gt;
+			&lt;p&gt;Les r&eacute;centes statistiques du blog montrent qu&#8217;il est la destination privil&eacute;gi&eacute;e de toutes les personnes recherchant une d&eacute;finition de &lt;strong&gt;libert&eacute; d&#8217;entreprise&lt;/strong&gt;.&lt;br&gt;
+			&lt;em&gt;&#171; D&eacute;finition de la libert&eacute; d&#8217;entreprendre &#187;&lt;/em&gt; est en effet la requ&ecirc;te la plus courante depuis plus de deux ans en moyenne.&lt;/p&gt;
+			...
+			&lt;h2&gt;Sens et plaisir dans la vie professionnelle&lt;/h2&gt;
+			&lt;p&gt;En amont de la cr&eacute;ation de &lt;a href=&quot;http://www.metycea.com&quot;&gt;Metycea&lt;/a&gt;, je me souviens avoir arpent&eacute; les couloirs du salon de la cr&eacute;ation d&#8217;entreprise en 2006.&lt;br&gt;
+			J&#8217;avais &eacute;t&eacute; en r&eacute;sonance avec deux interventions : celle de &lt;strong&gt;Jean-Michel BILLAUT&lt;/strong&gt; qui parlait de l&#8217;internet et des nouvelles technologies comme d&#8217;un vaste territoire de jeu et de plaisir. Et celle de l&#8217;organisateur du salon qui avait focalis&eacute; sa pr&eacute;sentation sur le &lt;strong&gt;bonheur d&#8217;entreprendre&lt;/strong&gt;.&lt;/p&gt;
+			...
+			&lt;h2&gt;Quid de la vision des entrepreneurs qui ont r&eacute;ussi&lt;/h2&gt;
+			&lt;p&gt;&lt;em&gt;D&eacute;finir son sens dans l&#8217;entreprise n&#8217;est pas chose ais&eacute;e&lt;/em&gt;. Sans doute parce qu&#8217;il n&#8217;est pas tr&egrave;s utile de chercher le sens dans le seul monde professionnel.&lt;br&gt;
+			Orientation qualit&eacute;, satisfaction client, croissance du chiffre d&#8217;affaires sont sans doute des objectifs &agrave; sens pour une entreprise&#8230;ce sont surtout soit des moyens, soit des r&eacute;sultantes d&#8217;une d&eacute;marche sens&eacute;e.&lt;/p&gt;
+			...
+			&lt;hr&gt;
+		&lt;/div&gt; &lt;!-- #article --&gt;
+
+		&lt;div id=&quot;categories&quot;&gt;
+			&lt;h2&gt;Articles de la m&ecirc;me cat&eacute;gorie&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href=&quot;article1.html&quot;&gt;Article 1&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;article2.html&quot;&gt;Article 2&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;article3.html&quot;&gt;Article 3&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;hr&gt;
+		&lt;/div&gt; &lt;!-- #categories --&gt;
+
+		&lt;div id=&quot;menu&quot;&gt;
+			&lt;h2&gt;Menu principal&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href=&quot;/&quot;&gt;Accueil&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;/rubrique1/&quot;&gt;Rubrique 1&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;/rubrique2/&quot;&gt;Rubrique 2&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;/rubrique3/&quot;&gt;Rubrique 3&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+			&lt;hr&gt;
+		&lt;/div&gt; &lt;!-- #menu --&gt;
+
+		&lt;div id=&quot;auteur&quot;&gt;
+			&lt;h2&gt;Auteur&lt;/h2&gt;
+			&lt;p&gt;
+				&lt;strong&gt;Sylvain JAUNE&lt;/strong&gt; - Ann&eacute;e 2012
+			&lt;/p&gt;
+		&lt;/div&gt; &lt;!-- #auteur --&gt;
+
+	&lt;/div&gt; &lt;!-- #conteneur --&gt;
+&lt;/body&gt;</code></pre>
+		</section>
+
+	</section>
+
+	<!-- CSS -->
+
+	<section>
+
+		<section>
+			<h2>CSS</h2>
+		</section>
+
+		<section>
+			<h3>Définition</h3>
+			<p class="subtitle">CSS (Cascading Style Sheets) : feuilles de style en cascade</p>
+			<ul>
+				<li>Les styles sont utilisés pour définir la présentation des éléments HTML</li>
+				<li>Les feuilles de styles sont stockées dans des fichiers CSS
+					<ul>
+						<li>Cela permet de tout centraliser et de gagner du temps</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Définition</h3>
+			<p class="subtitle">Le fond et la forme</p>
+			<ul>
+				<li>Les styles ont été ajouté en HTML 4.0 pour résoudre des problèmes</li>
+				<li>Le langage HTML n'avait jamais été conçu pour contenir des balises de formattage</li>
+				<li>Uniquement pour décrire le contenu dun document (sémantique)</li>
+				<li>Des balises de présentation comme <span class="ttag">&lt;font&gt;</span>, <span class="ttag">&lt;center&gt;</span> ont fait leur apparition en HTML 3.2</li>
+				<li>Le balisage mélangeant fond et form devenait alors un cauchemar pour les développeurs</li>
+				<li>Le W3C a donc décidé de créer le CSS</li>
+				<li>En HTML 4.0 on pouvait totalement séparer le fond de la forme</li>
+			</ul>
+		</section>
+
+	</section>
+
+	<section>
+
+		<section>
+			<h2>Notions de base</h2>
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">La syntaxe</p>
+			<ul>
+				<li>Une règle CSS à deux partie, un sélecteur et une ou plusieurs déclarations
+<pre><code>/* Ma première règle CSS */
+h1 { color: blue; font-size: 12px; }</code></pre>
+				</li>
+				<li>Le sélecteur est l'élement HTML que vous souhaitez décorer (<span class="ttag">h1</span>)</li>
+				<li>Chaque déclaration consiste en une propriété (<span class="ttag">color</span>) et une valeur (<span class="ttag">blue</span>)</li>
+				<li>Chaque déclaration doit être terminée par un point-virgule (<span class="ttag">;</span>)</li>
+				<li>La propriété est l'attribut de style que vous souhaitez modifier</li>
+				<li>Chaque propriété doit avoir une valeur</li>
+				<li>Les commentaires commence par <span class="ttag">/*</span> et finissent par <span class="ttag">*/</span>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">Les classes</p>
+			<ul>
+				<li>Dans l'exemple précédent tous les titres de niveau 1 (<span class="ttag">h1</span>) seront stylisés</li>
+				<li>
+					Pour n'en styliser que certains on peut sélectionner des éléments HTML en leur attribuant une ou plusieurs <strong>classes CSS</strong>
+<pre><code>&lt;p class=&quot;information&quot;&gt;Acheter du pain &agrave; la boulangerie&lt;/p&gt;</code></pre>
+				</li>
+				<li>
+					Plusieurs classes sont séparées par des espace :
+<pre><code>&lt;p class=&quot;information important&quot;&gt;Ne pas oublier le beurre&lt;/p&gt;</code></pre>
+				</li>
+				<li>Les classes s'écrivent avec un point (<span class="ttag">.</span>) en CSS :
+<pre><code>.information { font-weight: bold; }
+.important { color: red; }</code></pre>
+				</li>
+				<li>Les classes sont réutilisables et peuvent aussi s'appliquer à d'autres balises (si les propriétés sont reconnues)</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">Les identifiants</p>
+			<ul>
+				<li>Les élements HTML peuvent être identifiés directement (attribut <span class="ttag">id</span>)
+					<pre><code>&lt;div id=&quot;header&quot;&gt;...&lt;/div&gt;</code></pre>
+				</li>
+				<li>
+					Pour le cibler en CSS il faudra utiliser un dièse (<span class="ttag">#</span>)
+<pre><code>#header { border: 1px solid black; }</code></pre>
+				</li>
+				<li>Un identifiant n'est utilisable qu'une seule fois par page</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">L'appel aux feuilles de style</p>
+			<ul>
+				<li>Les feuilles de style externes sont apellées via la balise <span class="ttag">&lt;link&gt;</span>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;layout.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;text.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;print.css&quot; type=&quot;text/css&quot; media=&quot;print&quot; /&gt;</code></pre>
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">L'appel aux feuilles de style</p>
+			<ul>
+				<li>Les règles CSS peuvent aussi être utilisées en interne dans la page (déconseillé cependant)</li>
+				<li>Il faut pour cela placer les règles dans le <span class="ttag">&lt;head&gt;</span> et les encadrer par une balise <span class="ttag">&lt;style&gt;</span>
+<pre><code>&lt;head&gt;
+	&lt;style type=&quot;text/css&quot;&gt;
+		hr {color:sienna;}
+		p {margin-left:20px;}
+	&lt;/style&gt;
+&lt;/head&gt;</code></pre>
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">Styles en ligne</p>
+			<ul>
+				<li>On peut aussi définir des styles en ligne par élément HTML</li>
+				<li>Cette méthode va en contradiction avec le principe de séparation du fond et de la forme (à utiliser avec précaution donc)</li>
+				<li>Il suffit de mettre les règles CSS dans l'attribut <span class="ttag">style</span> de l'élément HTML</li>
+				<li><pre><code> &lt;p style=&quot;color:sienna; margin-left:20px;&quot;&gt;Un paragraphe&lt;/p&gt;</code></pre></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">La priorité des appels</p>
+			<ul>
+				<li>En fonction d'où seront définies les règles CSS, les règles de priorité ne sont pas les même (priorité croissante) :
+					<ol>
+						<li>La feuille de style système du navigateur</li>
+						<li>Les feuilles de styles externes</li>
+						<li>Les styles internes</li>
+						<li>Les styles en ligne</li>
+					</ol>
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p>Le positionnement des blocs</p>
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">Le positionnement relatif</p>
+			<ul>
+				<li>Par défaut les navigateurs affichent les éléments HTML block dans l'ordre normal du flux (ordre de lecture code HTML)</li>
+				<li>En position relative, un élément peut être décalé verticalement et/ou horizontalement</li>
+				<li>Même si cet élément est décalé l'élement suivant suivra normalement le flux (il se peut du coup qu'il y ait des chevauchements)</li>
+				<li>
+					La propriété CSS à utiliser est <span class="ttag">position</span> et la valeur <span class="ttag">relative</span>
+					<pre><code>Une &lt;span style=&quot;position: relative; background-color: yellow; top: 5px; left: 10px;&quot;&gt;information&lt;/span&gt; tr&egrave;s importante					</code></pre>
+				</li>
+				<li>La position <span class="ttag">relative</span> doit être suivie des propriétés de placement (<span class="ttag">top</span> ou <span class="ttag">bottom</span>, <span class="ttag">left</span> ou <span class="ttag">right</span>)</li>
+			</ul>
+			<iframe src="cours/t1/position.html" class="transparent" style="height: 110px;"></iframe>
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">Le positionnement absolu</p>
+			<ul>
+				<li>La position absolue permet de placer une boîte par rapport aux limites de son conteneur</li>
+				<li>Le conteneur parent doit avoir la <span class="ttag">position:relative</span></li>
+				<li>L'élément positionné en absolu sera totalemen retiré du flux</li>
+			</ul>
+			<iframe src="cours/t1/absolute.html" class="transparent" style="height: 140px;"></iframe>
+		</section>
+
+		<section>
+			<h3>Notions de base</h3>
+			<p class="subtitle">Le positionnement flottant</p>
+			<ul>
+				<li>Le positionnement flottant (float) retire une boîte du flux normal pour la faire flotter à droite ou à gauche</li>
+				<li>Le contenu suivant cette boîte flottante s'écoule le long de celle-ci dans l'espace libre</li>
+				<li>Le navigateur place la boîte jaune puis reprend le flux normal dans l'espace libre à gauche pour afficher la boîte verte</li>
+			</ul>
+			<iframe src="cours/t1/float.html" class="transparent" style="height: 200px;"></iframe>
+		</section>
+
+	</section>
+
+	<section>
+
+		<section>
+			<h2>Les fichiers reset</h2>
+			<img src="images/t1/neuralizer_5336.jpeg" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Les fichiers reset</h3>
+			<p class="subtitle">Les fichiers quoi ?</p>
+			<ul>
+				<li>Les navigateurs sont livrés avec une CSS système (on l'a vu plus haut)</li>
+				<li>Les feuilles de style systèmes sont légèrement différentes d'un navigateur à l'autre</li>
+				<li>On ne peut pas s'en servir directement, juste la surcharger (écrire des règle CSS par dessus qui les invalident)</li>
+				<li>Certains développeurs ont donc eu l'idée de créer une feuille de style qui va remettre à zéro celle du navigateur
+					<ul>
+						<li>Suppression des marges,</li>
+						<li>Des espacements,</li>
+						<li>Alignement des polices,</li>
+						<li>...</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Les fichiers reset</h3>
+			<p class="subtitle">La Yahoo Reset CSS</p>
+<pre class="no-break"><code>body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {
+    margin:0;
+    padding:0;
+}
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+fieldset,img {
+    border:0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+    font-style:normal;
+    font-weight:normal;
+}
+ol,ul {
+    list-style:none;
+}
+caption,th {
+    text-align:left;
+}
+...</code></pre>
+		</section>
+
+		<section>
+			<h3>Les fichiers reset</h3>
+			<p class="subtitle">Avec feuille de style système</p>
+			<iframe src="cours/t1/4.html"></iframe>
+		</section>
+
+		<section>
+			<h3>Les fichiers reset</h3>
+			<p class="subtitle">En utilisant un fichier reset</p>
+			<iframe src="cours/t1/5.html"></iframe>
+		</section>
+
+	</section>
+
+	<section>
+
+		<section>
+			<h2>La préparation des styles</h2>
+		</section>
+
+		<section>
+			<h3>La préparation des styles</h3>
+			<p class="subtitle">Chargement des feuilles de style</p>
+			<ul>
+				<li>On va déjà créer une première feuille de style et la charger dans notre page :
+<pre><code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;reset.css&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;styles.css&quot; /&gt;</code></pre>
+				</li>
+				<li>On aura pris soin de charger avant la feuille de style reset.css</li>
+				<li>L'ordre d'appel des feuilles de styles est important</li>
+			</ul>
+		</section>
+
+	</section>
+
+	<section>
+
+		<section>
+			<h2>Le positionnement des blocs</h2>
+			<img src="images/t1/deco.jpeg" style="width: 100%;" />
+		</section>
+
+		<section>
+			<h3>Le positionnement des blocs</h3>
+			<p class="subtitle">Identification visuelle des blocs</p>
+			<ul>
+				<li>On va identifier nos différents bloc (<span class="ttag">&lt;div&gt;</span>) définis précédement par des couleurs de fond
+<pre><code>#conteneur { background-color: silver; }
+#article { background-color: red; }
+#categories { background-color: blue; }
+#menu { background-color: green; }
+#auteur { background-color: yellow; }</code></pre>
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Le positionnement des blocs</h3>
+			<p class="subtitle">Colorisation des blocs</p>
+			<iframe src="cours/t1/6.html"></iframe>
+		</section>
+
+		<section>
+			<h3>Le positionnement des blocs</h3>
+			<p class="subtitle">Positionnement des blocs</p>
+			<iframe src="cours/t1/7.html" style="height: 250px;"></iframe>
+			<ul>
+				<li>On va repositionner les blocs dans l'ordre que l'on souhaite :
+					<ol>
+						<li>Le menu principal en haut</li>
+						<li>Une colonne à gauche</li>
+						<li>Une colonne à droite</li>
+						<li>Le pied de page</li>
+					</ol>
+				</li>
+				<li>Bien sur sans modifier le code HTML !</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Le positionnement des blocs</h3>
+			<p class="subtitle">Positionnement des blocs</p>
+<pre><code>&lt;div id=&quot;contenu&quot;&gt;
+	&lt;div id=&quot;article&quot;&gt;
+	...
+	&lt;/div&gt;
+
+	&lt;div id=&quot;categories&quot;&gt;
+	...
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+			<ul>
+				<li>Nous allons encradrer nos div <span class="ttag">#article</span> et <span class="ttag">#categories</span> par un div <span class="ttag">#contenu</span></li>
+				<li>Donnons lui aussi un couleur (rose)</li>
+			</ul>
+
+		</section>
+
+		<section>
+			<h3>Le positionnement des blocs</h3>
+			<p class="subtitle">Positionnement des blocs</p>
+			<iframe src="cours/t1/8.html"></iframe>
+		</section>
+
+		<section>
+			<h3>Le positionnement des blocs</h3>
+			<p class="subtitle">Positionnement des blocs</p>
+			<ul>
+				<li>Il devient maintenant très facile de positionner différement les blocs que dans l'ordre normal du flux</li>
+				<li>On va utiliser propriétés CSS <span class="ttag">position</span> et <span class="ttag">float</span> pour arriver à nos fins</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Le positionnement des blocs</h3>
+			<p class="subtitle">Positionnement des blocs</p>
+			<pre class="no-break"><code>#conteneur {
+	background-color: silver;
+	position: relative;
+	height: 550px;
+}
+
+#menu {
+	background-color: green;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: auto;
+}
+
+#contenu {
+	background-color: pink;
+	position: absolute;
+	top: 120px;
+	left: 0px;
+}
+
+#auteur {
+	background-color: yellow;
+	position: absolute;
+	bottom: 0px;
+	left: 0;
+	width: 100%;
+}</code></pre>
+		</section>
+
+		<section>
+			<h3>Le positionnement des blocs</h3>
+			<p class="subtitle">Positionnement des blocs</p>
+			<p>On a maintenant les éléments dans l'ordre que l'on souhaite !</p>
+			<iframe src="cours/t1/9.html"></iframe>
+		</section>
+
+		<section>
+			<h3>Le positionnement des blocs</h3>
+			<p class="subtitle">Positionnement des colonnes</p>
+<pre><code>#article {
+	background-color: red;
+	float: left;
+	width: 80%;
+}
+
+#categories {
+	background-color: blue;
+	float: right;
+	width: 20%;
+}</code></pre>
+		</section>
+
+		<section>
+			<h3>Le positionnement des blocs</h3>
+			<p class="subtitle">Positionnement des colonnes</p>
+			<iframe src="cours/t1/10.html"></iframe>
+		</section>
+
+	</section>
+
+	<section>
+
+		<section>
+			<h2>La stylisation du document</h2>
+			<img src="images/t1/deco.jpeg" style="width: 100%;" />
+		</section>
+
+		<section>
+			<h3>La stylisation du document</h3>
+			<p class="subtitle">Masquage visuel de certains éléments</p>
+			<ul>
+				<li>Il se peut que certains éléments ne soit pas nécessaires visuellement</li>
+				<li>On peut donc les cacher en CSS pour clarifier la page</li>
+				<li>Dans notre cas :
+					<ul>
+						<li>Les séparateurs</li>
+						<li>Le titre du menu principal</li>
+						<li>Le titre du pied de page</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>La stylisation du document</h3>
+			<p class="subtitle">Masquage visuel de certains éléments</p>
+<pre><code>hr,
+#menu h2,
+#auteur h2 {
+	display: none;
+}</code></pre>
+			<ul>
+				<li>Notez les sélecteurs multiples pour une même règle</li>
+				<li>Attention à ne pas cacher d'informations trop importantes</li>
+				<li>Les moteurs de recherche n'aiment pas torp ça !</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>La stylisation du document</h3>
+			<p class="subtitle">Masquage visuel de certains éléments</p>
+			<p>On en profite pour supprimer les couleurs de fond des blocs</p>
+		</section>
+
+		<section>
+			<h3>La stylisation du document</h3>
+			<p class="subtitle">C'est déjà mieux !</p>
+			<iframe src="cours/t1/11.html"></iframe>
+		</section>
+
+		<section>
+			<h3>La stylisation du document</h3>
+			<p class="subtitle">Rendons nos menus un peu plus sexys</p>
+<pre><code>#menu ul li
+{
+	display: inline-block;
+	padding: 5px;
+	border: 1px solid black;
+}
+#menu ul li a { text-decoration: none; font-weight: bold; }
+
+#categories ul li
+{
+	list-style-type: square;
+	list-style-position: inside;
+}</code></pre>
+		</section>
+
+		<section>
+			<h3>La stylisation du document</h3>
+			<p class="subtitle">C'est déjà mieux !</p>
+			<iframe src="cours/t1/12.html"></iframe>
+		</section>
+
+		<section>
+			<h3>La stylisation du document</h3>
+			<p class="subtitle">Dernier coup de peinture !</p>
+<pre class="no-break"><code>h1 {
+	font-family: &quot;Trebuchet MS&quot;;
+	font-size: 30px;
+	margin-bottom: 20px;
+	color: brown;
+}
+h2 {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+p { margin-bottom: 10px; }
+a { color: brown; }
+strong { font-weight: bold; }
+em { font-style: italic; }
+#auteur {
+	font-style: italic;
+	font-size: 11px;
+	text-align: center;
+}
+#article {
+	border-right: 1px solid black;
+	padding-right: 10px;
+	width: 78%;
+}
+#contenu { top: 80px; }</code></pre>
+		</section>
+
+		<section>
+			<h3>La stylisation du document</h3>
+			<p class="subtitle">Tada !</p>
+			<iframe src="cours/t1/13.html"></iframe>
+		</section>
+
+	</section>
+
+	<section>
+		<h2>Des questions ?</h2>
+	</section>

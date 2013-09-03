@@ -1,0 +1,87 @@
+hr { clear: both; }
+
+h1 {
+	font-family: "Trebuchet MS";
+	font-size: 30px;
+	margin-bottom: 20px;
+	color: brown;
+}
+
+h2 {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+p { margin-bottom: 10px; }
+a { color: brown; }
+strong { font-weight: bold; }
+em { font-style: italic; }
+
+#auteur {
+	font-style: italic;
+	font-size: 11px;
+	text-align: center;
+}
+
+#article {
+	border-right: 1px solid black;
+	padding-right: 10px;
+	width: 78%;
+}
+
+#contenu { top: 80px; }
+
+hr,
+#menu h2,
+#auteur h2 {
+	display: none;
+}
+
+#menu ul li
+{
+	display: inline-block;
+	padding: 5px;
+	border: 1px solid black;
+}
+#menu ul li a { text-decoration: none; font-weight: bold; }
+
+#categories ul li
+{
+	list-style-type: square;
+	list-style-position: inside;
+}
+
+#article {
+	float: left;
+}
+
+#categories {
+	float: right;
+	width: 20%;
+}
+
+#conteneur {
+	position: relative;
+	height: 550px;
+}
+
+#menu {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: auto;
+}
+
+#contenu {
+	position: absolute;
+	left: 0px;
+}
+
+#auteur {
+	position: absolute;
+	bottom: 0px;
+	left: 0;
+	width: 100%;
+}

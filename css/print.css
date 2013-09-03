@@ -1,0 +1,44 @@
+@CHARSET "UTF-8";
+
+pre,
+code,
+img,
+.non-printable
+{
+	/*
+	display: none !important;
+	height: 1px !important;
+	min-height: 1px !important;
+	width: 1px !important;
+	*/
+}
+
+img {
+	border: none !important;
+	height: auto !important;
+	width: auto !important;
+}
+
+h2
+{
+	text-align: center;
+	font-weight: bold;
+}
+
+.reveal section > section {
+	page-break-before: avoid !important;
+	page-break-after: avoid !important;
+	border-bottom: 1px solid black;
+}
+
+.reveal section:first-child
+{
+	page-break-before: avoid !important;
+}
+
+.reveal section {
+	page-break-before: always !important;
+	min-height: auto !important;
+	width: 100% !important;
+	margin: 0 !important;
+}

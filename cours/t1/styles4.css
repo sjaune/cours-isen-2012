@@ -1,0 +1,43 @@
+hr { clear: both; }
+
+hr,
+#menu h2,
+#auteur h2 {
+	display: none;
+}
+
+#article {
+	float: left;
+	width: 80%;
+}
+
+#categories {
+	float: right;
+	width: 20%;
+}
+
+#conteneur {
+	position: relative;
+	height: 550px;
+}
+
+#menu {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: auto;
+}
+
+#contenu {
+	position: absolute;
+	top: 120px;
+	left: 0px;
+}
+
+#auteur {
+	position: absolute;
+	bottom: 0px;
+	left: 0;
+	width: 100%;
+}

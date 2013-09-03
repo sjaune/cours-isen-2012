@@ -1,0 +1,445 @@
+	<section>
+		<h1>Optimisation des applications Web</h1>
+		<p>ISEN - 2012/2013</p>
+		<p style="margin-top: 60px; font-size: 36px;"><strong>Sylvain Jaune</strong></p>
+		<p>sjaune@gmail.com</p>
+		<p>www.sylvain-jaune.com</p>
+	</section>
+
+	<section>
+		<h2>Sommaire</h2>
+		<ol>
+			<li>Introduction</li>
+			<li>Pourquoi optimiser ?</li>
+			<li>Quand optimiser ?</li>
+			<li>Optimisation côté client</li>
+			<li>Optimisation côté serveur</li>
+			<li>Optimisation de l'infrastructure</li>
+		</ol>
+	</section>
+
+	<section>
+
+		<section>
+			<h2>Pourquoi optimiser ?</h2>
+			<img src="images/t2/300x225xvitesse-300x225.jpg.pagespeed.ic.SaryHIGDDl.jpg" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Pour optimiser l'expérience utilisateur</h3>
+			<ul>
+				<li>La <strong>fidélisation</strong> dépend en grande partie de la qualité et des <strong>performances des sites</strong></li>
+				<li><strong>40% des visiteurs abandonnent</strong> la navigation si le <strong>temps de réponse dépasse 3 secondes</strong></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Pour optimiser son trafic / ses ventes</h3>
+			<ul>
+				<li>Une augmentation de 100ms du temps de chargement entraine une réduction des ventes de 1% (Etude Amazon 2007)</li>
+				<li>Une augmentation de 500ms entraine une chute de 20% du trafic (Etude Google)</li>
+				<li>Le <strong>taux de rebond</strong> est <strong>réduit</strong> avec un site optimisé</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Pour optimiser son trafic / ses ventes</h3>
+			<p>ex. : Temps d’attente / abandon pour les sites de voyage</p>
+			<img src="images/t2/etude-temps-chargement-web-fuites.gif" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Pour améliorer les performances web mobile</h3>
+			<ul>
+				<li>Les utilisateurs de terminaux mobiles s’attendent à des temps de chargement aussi rapides que sur PC</li>
+				<li>Même si les contraintes techniques et réseau ne sont pas les mêmes  (mobilité, débit, ...)</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Pour améliorer les performances web mobile</h3>
+			<p>ex. : Moyenne des débits descendants</p>
+			<img src="images/t2/1231947-degrouptest-s2-2011-debit-mobile-montants.png" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Pour améliorer son référencement naturel</h3>
+			<ul>
+				<li>Le <strong>temps de réponse</strong> est un <strong>critère</strong> mesuré par les <strong>moteurs de recherche</strong></li>
+				<li>Cela favorise la rapidité d’indexation d’une nouvelle page et permet d'indexer plus de pages en profondeur</li>
+				<li>Google recommande un délai moyen de 1,5 secondes pour l’affichage d’une page web</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Pour réduire les coûts</h3>
+			<ul>
+				<li>Il y a de plus en plus de données à stocker, manipuler et exploiter</li>
+				<li>Le site sera moins gourmand en ressources (CPU, RAM, ...) et sera plus disponible lors des pics de charge</li>
+				<li>A l'ère du Cloud les ressources à acheter seront moindre</li>
+			</ul>
+		</section>
+
+	</section>
+
+	<section>
+		<section>
+			<h2>Quand optimiser ?</h2>
+			<img src="images/t2/300x225xvitesse-300x225.jpg.pagespeed.ic.SaryHIGDDl.jpg" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Quand optimiser ?</h3>
+			<ul>
+				<li>L'optimisation intervient généralement <strong>en aval du développement</strong></li>
+				<li><em>Rien n'empêche cependant d'y réfléchir pendant la conception !</em></li>
+				<li>Elle intervient <strong>APRES correction des défauts de conception</strong> (bugs, mauvais code, factorisation du code, ...) de façon à obtenir un code propre et stable</li>
+				<li>Ne pas non plus perdre du temps en optimisant son code à outrance pour gagner quelques ms (sauf si on s'appelle Amazon !)</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Quand optimiser ?</h3>
+			<ul>
+				<li>Logiquement on va donc <strong>commencer par optimiser notre application</strong></li>
+				<li>Puis l'<strong>environnement d'exécution</strong> de l'application</li>
+				<li>Ensuite des <strong>optimisation côté client</strong></li>
+			</ul>
+		</section>
+
+	</section>
+
+<section>
+
+		<section>
+			<h3>Optimisation côté client</h3>
+			<img src="images/t2/300x225xvitesse-300x225.jpg.pagespeed.ic.SaryHIGDDl.jpg" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Optimisation du code HTML</h3>
+			<ul>
+				<li>Le temps de chargement des pages est directement lié à l'accès aux ressources (<strong>requêtes HTTP</strong>)</li>
+				<li>En premier lieu : le <strong>document HTML</strong></li>
+				<li>Puis toutes les <strong>autres ressources</strong> appelés (<strong>JS, CSS, images</strong>, ...)</li>
+				<li>On va chercher à <strong>supprimer</strong> le chargement du maximum de <strong>données inutiles</strong> (en grapillant des octets)</li>
+				<li>On supprimera les <strong>caractères inutiles</strong> : espaces, les sauts de lignes, les balises fermantes, commentaires, etc.</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Optimisation du code HTML</h3>
+			<p>Ex. : Requêtes HTTP (inspecteur Chrome)</p>
+			<img src="images/t2/The-Google-Chrome-Developer-Tools-Improves-Network-Info-and-CSS-Editing-2.png" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Utiliser l'ordre de chargement des objets</h3>
+			<ul>
+				<li>Inclure les <strong>fichiers</strong> externes <strong>CSS</strong> <strong>avant les fichiers</strong> externes <strong>JS</strong></li>
+				<li>Le navigateur attends le chargement complet d'un fichier JS : cela bloque les requêtes suivantes</li>
+				<li>On place du coup les fichiers <strong>javascript</strong> en <strong>fin de page</strong></li>
+				<li><em>Les fichiers CSS ne réagisse pas de la même manière</em></li>
+				<li>Il faut donc systématiquement <strong>inclure les fichiers CSS avant les fichiers JS</strong></li>
+				<li><em>On peut quand même reporter le chargement des javascripts en utilisant l’<strong>attribut defer</strong> de la balise script</em></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Modes de chargements Javascript</h3>
+			<ul>
+			<li><strong>Attribut async</strong> : Le script est exécuté de manière asynchrone en même temps que le chargement de la page</li>
+			<li><strong>Attribut defer</strong> : Le script est exécuté quand la page à fini de se charger</li>
+			<li><strong>Par défaut</strong> : (ni l'un, ni l'autre) : Le script est parsé et exécuté immédiatement, avant que la page finisse de se charger</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Chargez ce dont vous avez besoin</h3>
+			<ul>
+				<li>N'inclure que les fichiers CSS et JS spécifiques à la page en cours</li>
+				<li>Attention aux librairies externes ! (modules sociaux : facebook, twitter, google+, ...)</li>
+				<li><strong>Utiliser les versions asynchrone</strong> des librairies javascript</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Minifier les fichiers JS et CSS</h3>
+			<ul>
+				<li>Des utilitaires ou scripts <strong>compresser la taille des fichiers JS et CSS</strong> (minification)</li>
+				<li><em>Pour les deux ils suppriment les espaces blancs et les caractères superflus (commentaires, ...)</em></li>
+				<li>CSS : ils réduisent le nombre de propriétés CSS et la redondance de code</li>
+				<li>CSS : ils fusionnent les sélecteurs identiques</li>
+				<li>ex. : CSSTidy, Google Minify, YUI Compressor, ...</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Minifier les fichiers JS et CSS</h3>
+			<p>Ex. : Code minifié</p>
+			<img src="images/t2/minify-css-wordpress.jpg" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Optimiser les images / Formats</h3>
+			<ul>
+				<li>Il est essentiel de <strong>connaître les formats d'images</strong> et leur utilisation</li>
+				<li><strong>JPEG</strong> : Photos</li>
+				<li><strong>PNG 8</strong> : Visuels sans transparence (peu de couleurs / couleurs indexées)</li>
+				<li><strong>PNG 24/32</strong> : Visuels avec transparence (couche alpha)</li>
+				<li><strong>Supprimer les metas données</strong> si elles ne sont pas utilisées</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Optimiser les images / Formats</h3>
+			<ul>
+				<li><strong>Le GIF</strong> : Graphic Interchange Format</li>
+				<li>Format propriétaire	(société Compuserve)</li>
+				<li>De 2 à 256 couleurs</li>
+				<li>Gère une couche de transparence</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Optimiser les images / Formats</h3>
+			<ul>
+				<li><strong>Le PNG</strong> : Portable Network Graphics</li>
+				<li>Alternative libre au GIF</li>
+				<li>Format de compression sans perte d'informations</li>
+				<li>PNG8 : de 2 à 256 couleurs</li>
+				<li>PNG24 : 24 bits (16 millions de couleur)</li>
+				<li>PNG32 : 32 bits (16 millions de couleur + 256 niveaux de transparence)</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Optimiser les images / Formats</h3>
+			<ul>
+				<li><strong>Le JPEG</strong> : Joint Photographic Experts Group</li>
+				<li>Format de compression avec perte d'informations</li>
+				<li>Permet de compresser des images lourdes (photos, ...)</li>
+				<li>Moins pertinent quand les images n'ont pas beaucoup de couleurs</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Compresser les images</h3>
+			<ul>
+				<li>Chercher le bon taux de compression en fonction du rendu souhaité (JPEG essentiellement)</li>
+				<li>Ne pas redimensionner les images directement via balise HTML img</li>
+				<li>Utiliser la bonne taille au bon endroit (créer des variations d'images)</li>
+				<li>Des utilitaires aident aussi à compresser des PNG en enlèvant les couches et pixels inutiles</li>
+			</ul>
+		</section>
+
+	</section>
+
+	<section>
+		<section>
+			<h2>Optimisations côté serveur</h2>
+			<img src="images/t2/300x225xvitesse-300x225.jpg.pagespeed.ic.SaryHIGDDl.jpg" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>La qualité du code</h3>
+			<ul>
+				<li>Le temps de génération des pages est directement induite par la <strong>qualité du code</strong> :</li>
+				<li>Le temps d'accès aux ressources est à prendre en compte: <strong>accès disque</strong> (logs, cache, ...), <strong>base de données</strong> (nb de rêquetes, ...), <strong>appels externes</strong> (API, WebServices, ...), ...,</li>
+				<li>Le serveur va mettre beaucoup de temps à générer le code HTML si le script serveur est trop long</li>
+				<li>C'est ce qu'on ne veut pas pour notre internaute !</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Profilage des application</h3>
+			<ul>
+				<li>Une technique et de <strong>profiler son code</strong></li>
+				<li>On identifie les <strong>fonctions qui prennent le plus de temps</strong> et se répète le plus</li>
+				<li>On se concentrera sur celles-ci pour optimiser le code, le factoriser, ou appliquer une politique de cache des données par exemple</li>
+				<li>Le <strong>debugger XDebug</strong> propose cette fonctionnalité par exemple</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Profilage des application</h3>
+			<p>Ex. : Profiling sous Xdebug</p>
+			<img src="images/t2/xdebug_profile.png" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Système de cache d’opcode</h3>
+			<ul>
+				<li>C'est un <strong>module</strong> à installer sur le <strong>serveur</strong></li>
+				<li>Un cache d’opcode <strong>met en mémoire le résultat de la pré-compilation du script PHP</strong></li>
+				<li>Il permet de gagner en performance <strong>sans avoir besoin de modifier le code PHP</strong></li>
+				<li>L’opcode va être stocké dans un cache de type « mémoire »</li>
+				<li>Principaux caches d’opcode :<strong>APC</strong>, eAccelerator, Xcache</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Système de cache d’opcode</h3>
+			<p>Ex. : Fonctionnement du cache d'OpCode</p>
+			<img src="images/t2/cache_apc_1.jpg" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Compression GZIP des requêtes HTTP</h3>
+			<ul>
+				<li>Le serveur compresse les données (code HTML, CSS...)</li>
+				<li>ex. : <em>mod_deflate sous Apache</em></li>
+				<li>Les fichiers <strong>transitent par le réseau via HTTP</strong></li>
+				<li>Le <strong>navigateur décompresse les données</strong> avant de les interpréter</li>
+				<li>Cela demande un peu plus de ressources serveur (mais les serveurs sont de plus en plus puissants)</li>
+				<li>La quasi totalité des navigateurs du marché supporte cette fonction</li>
+				<li><em>Autant s'en servir !</em></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Compression GZIP des requêtes HTTP</h3>
+			<img src="images/t2/http-compression-network.png" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Optimisation de la base</h3>
+			<ul>
+				<li>Requêtes : <strong>analyser les plus lentes</strong> et qui génèrent de la charge (slow query, explain, ...)</li>
+				<li><strong>Analyse du schéma</strong> : normalisation / dénormalisation / jointures</li>
+				<li>Bien utiliser les <strong>indexes</strong> sur les champs les plus sollicités par les conditions WHERE</li>
+				<li>Structure des champs : <strong>bien utiliser les types</strong> (INT, VARCHAR, ...)</li>
+				<li>Cache SQL : <strong>Cacher les requêtes qui sont régulières</strong> et qui ne changent pas dans leur structure</li>
+				<li><strong>Structurelle</strong> : partitionnement, replication (maître esclaves), ..., si besoin de répartir la charge</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Optimisation de la base</h3>
+			<ul>
+				<li>Pour les types de données :</li>
+				<li>Définir correctement le type de champ (char, int, float, ...)</li>
+				<li>Définir si le champ sera signé ou pas (pour les numériques)</li>
+				<li>Estimer au mieux la valeur maximum du champ</li>
+				<li>Cela nous permet de ne pas allouer inutilement des octets !</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Optimisation de la base</h3>
+			<p>Ex. Types de données numériques</p>
+			<img src="images/t2/numeric-data-type1.jpg" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Optimisation de la base</h3>
+			<ul>
+				<li>Il est des fois plus efficace de faire plusieurs requêtes SQL successives qu'une grosse requête !</li>
+				<li>Pour les sites à forte charge on pourra même faire <strong>cohabiter plusieurs SGBD</strong> en fonction de la typologie des données à stocker (bases SQL + bases NoSQL)</li>
+				<li>On utilisera du coup les forces de chacun d'entre eux</li>
+				<li>Les <strong>configurations</strong> mêmes des SGBD pourront être <strong>"tunées"</strong> pour les besoin de l'application</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Les fichiers .htaccess</h3>
+			<ul>
+				<li>A utiliser que quand vous n'avez pas accès à la conf serveur !</li>
+				<li>Si la directive AllowOverride sous Apache est active, le serveur va à chaque requête, essayer de trouver le fichier .htaccess du répertoire</li>
+				<li>Cela peut donc vraiment nuire aux performances du site</li>
+				<li>Mieux vaut mettre les <strong>règles du htaccess</strong> dans la configuration du <strong>vhost Apache</strong> (chargé une seule fois)</li>
+			</ul>
+		</section>
+
+</section>
+
+	<section>
+
+		<section>
+			<h2>Optimisation de l'infrastructure</h2>
+			<img src="images/t2/Server-Optimization.jpg" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Choix de l'architecture d'hébergement</h3>
+			<ul>
+				<li>Déjà bien <strong>dimensionner l'architecture en fonction des besoins initiaux du site</strong> (hébergement, ressources, ...)</li>
+				<li>Et choisir une architecture avec un <strong>fort taux de disponibilité</strong> (sans période de coupure) est obligatoire</li>
+				<li>Dans le cadre d'une application professionnelle préférer un serveur dédié (vs mutualisé)</li>
+				<li>Les <strong>hébergeurs professionnels</strong> garantissent normalement la dispo (OVH, 1and1, ...)</li>
+				<li>La qualité du matériel est important (modèle de CPU, RAM, DD, ...)</li>
+				<li>Et le temps d'accès en écriture / lecture dans le cas d'un DD</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Configuration de l'OS</h3>
+			<ul>
+				<li>Bien <strong>choisir son système d'exploitation</strong> en fonction de l'application (Windows, Linux, OSX, ...)</li>
+				<li>Idem pour la <strong>distribution</strong> dans le cas de Linux (Debian, Ubuntu, ...) en fonction des forces et faiblesses de chacune</li>
+				<li>Pour l'hébergement de sites et application choisir une version <strong>"server"</strong> de l'OS</li>
+				<li>Cela évite de charger les logiciels inutiles ! (interface graphique, périphériques inutiles, ...)</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Configuration de l'OS</h3>
+			<ul>
+				<li>Bien optimiser le <strong>partitionnement de ses disques</strong> (système de fichier, swap, ...)</li>
+				<li><strong>N'installer que les logiciels nécessaires</strong></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Le clustering</h3>
+			<ul>
+				<li>Méthode de <strong>répartition de charge</strong> grâce à l'utilisation d'une grappe de serveurs (clusters)</li>
+				<li>Cela permet d'avoir une solution qui pourra gérer de manière plus efficace le trafic</li>
+				<li>Un CMS en mode cluster permet donc de faire tourner un site Internet sur plusieurs serveurs</li>
+				<li>Cela garantit généralement de meilleures performances</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Le clustering</h3>
+			<img src="images/t2/Clustering_mysql.png" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Utilisation d'un CDN</h3>
+			<ul>
+				<li><strong>CDN : Content Delivery Network</strong></li>
+				<li>C'est un réseau de serveurs qui offrent en <strong>cache du contenu statique basé sur la localisation</strong> géographique de l’utilisateur</li>
+				<li>Si vous êtes situé en France, le CDN tentera de vous fournir les images/documents à partir du serveur le plus près possible de votre position</li>
+				<li>Un CDN peut avoir un impact significatif sur la performance globale de votre page</li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Utilisation d'un CDN</h3>
+			<img src="images/t2/cdn1.png" style="height: 100%;" />
+		</section>
+
+		<section>
+			<h3>Utilisation d'un reverse proxy</h3>
+			<ul>
+				<li>Il est <strong>installé en tête de l’infrastructure</strong> et va jouer le rôle de <strong>cache local</strong> et de <strong>load balancer</strong></li>
+				<li>Son rôle sera de <strong>soulager l’infrastructure sous-jacente</strong></li>
+				<li>Il identifie la ressource appelée et la charge dans des modalités spécifique (serveur web, depuis un cache, avec certains paramètres, ...)</li>
+				<li>Par ex. : servir les fichiers statiques (images, css, js, ...) par un serveur web dédié (lighttpd, nginx, apache threadé, ...)</li>
+				<li><strong>A réserver pour les sites à fort trafic</strong></li>
+				<li><em>Exemple de reverse proxy : Varnish</em></li>
+			</ul>
+		</section>
+
+		<section>
+			<h3>Utilisation d'un reverse proxy</h3>
+			<img src="images/t2/forlinux-blog-varnish.png" style="height: 100%;" />
+		</section>
+
+	</section>
+
+		<section>
+			<h2>Questions ?</h2>
+		</section>
+

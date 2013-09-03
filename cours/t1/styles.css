@@ -1,0 +1,9 @@
+div { margin: 3px; padding : 3px; }
+
+#conteneur { background-color: silver; }
+#article { background-color: red; }
+#categories { background-color: blue; }
+#menu { background-color: green; }
+#auteur { background-color: yellow; }
+
+#contenu { background-color: pink; }
